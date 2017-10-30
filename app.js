@@ -8,12 +8,22 @@ var bodyParser = require('body-parser');
 var MongoClient = require('mongodb').MongoClient;
 var db;
 
+
+
 // Initialize connection once
-MongoClient.connect("mongodb://localhost:27017/konomoko", function(err, database) {
+// MongoClient.connect("mongodb://localhost:27017/konomoko", function(err, database) {
+//     if(err) return console.error(err);
+//
+//     db = database;
+//
+//     console.log(db);
+//     // the Mongo driver recommends starting the server here because most apps *should* fail to start if they have no DB.  If yours is the exception, move the server startup elsewhere.
+// });
+
+MongoClient.connect("mongodb://konomoko:BRuFfI4XaJ6Y5vIwaMbLiMe2CSAoZCHTa0ktQWspQ9uoxkFInOcHsL3ak9sIeirMHW6hcWJ80OcVBMgCaN0yGQ==@konomoko.documents.azure.com:10255/konomoko?ssl=true", function(err, database) {
     if(err) return console.error(err);
 
     db = database;
-
     // the Mongo driver recommends starting the server here because most apps *should* fail to start if they have no DB.  If yours is the exception, move the server startup elsewhere.
 });
 

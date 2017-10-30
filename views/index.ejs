@@ -99,8 +99,11 @@
                                 <div class="container">
 
                                     <p class="first_screen_subtitle animate_el tr_top delay_1">Konomoko</p>
-                                    <input type="text" name="search" placeholder="Search MLS Number">
 
+
+                                    <div class="ui-widget">
+                                      <input id="searchBar" type="text" name="search" placeholder="Search MLS Number"">
+                                    </div>
                                 </div>
 
                             </div>
@@ -121,73 +124,7 @@
 
                     <div class="section_offset2">
 
-                        <div class="row">
-
-                            <div class="col-md-4">
-
-                                <div class="products_box">
-
-                                    <h4>Instant Report</h4>
-
-                                    <p class="products_price">99</p>
-
-                                    <ul class="products_list">
-                                        <li>Inspector: Bob Jones</li>
-                                        <li>Seller: Samuel Chien</li>
-                                        <li>Review: 4.8</li>
-                                    </ul>
-
-                                    <div>
-                                        <a href="javascript'';" class="btn_type1"><span>Order Now</span></a>
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <div class="col-md-4">
-
-                                <div class="products_box">
-
-                                    <h4>Schedule Inspection</h4>
-
-                                    <p class="products_price">250</p>
-
-                                    <ul class="products_list">
-                                        <li>Schedule within 24 Hours</li>
-                                        <li>Licensed Professional</li>
-                                        <li>Online Report Portal</li>
-                                    </ul>
-
-                                    <div>
-                                        <a href="javascript'';" class="btn_type1"><span>Schedule Now</span></a>
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <div class="col-md-4">
-
-                                <div class="products_box">
-
-                                    <h4>Upload Report</h4>
-
-                                    <p class="products_price">99</p>
-
-                                    <ul class="products_list">
-                                        <li>Start Earning Today</li>
-                                        <li>Access to Seller Dashboard</li>
-                                        <li>Get Paid ASAP</li>
-                                    </ul>
-
-                                    <div>
-                                        <a href="javascript'';" class="btn_type1"><span>Upload Now</span></a>
-                                    </div>
-
-                                </div>
-
-                            </div>
+                        <div id="reportDisplayDiv" class="row">
 
                         </div>
 
@@ -373,6 +310,7 @@
         <!-- Include Libs & Plugins
         ============================================ -->
         <script type="text/javascript" src="/javascripts/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" src="/javascripts/main.js"></script>
         <script type="text/javascript" src="/plugins/flexslider/jquery.flexslider-min.js"></script>
         <script type="text/javascript" src="/plugins/owl.carousel/owl.carousel.min.js"></script>
         <script type="text/javascript" src="/plugins/Counter-Up-master/waypoints.min.js"></script>
@@ -383,6 +321,8 @@
         <script src="/plugins/sorting.js"></script>
         <script src="/plugins/Magnific-Popup-master/jquery.magnific-popup.min.js"></script>
 		<script type="text/javascript" src="/plugins/jquery.appear.min.js"></script>
+
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
         <!-- Theme files
         ============================================ -->
