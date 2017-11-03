@@ -30,6 +30,8 @@ MongoClient.connect("mongodb://konomoko:BRuFfI4XaJ6Y5vIwaMbLiMe2CSAoZCHTa0ktQWsp
 var index = require('./routes/index');
 var users = require('./routes/users');
 var reports = require('./routes/reports');
+var dashboard = require('./routes/dashboard');
+var login = require('./routes/login');
 
 var app = express();
 
@@ -54,6 +56,8 @@ app.use(function(req,res,next){
 app.use('/', index);
 app.use('/users', users);
 app.use('/reports', reports);
+app.use('/dashboard', dashboard);
+app.use('/login', login);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

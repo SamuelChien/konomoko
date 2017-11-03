@@ -5,7 +5,7 @@ $( document ).ready(function() {
         $.get( "/reports/fuzzySearch", { searchTerm: $("#searchBar").val()}).done(function( data ) {
             if(event.keyCode == 13)
             {
-                console.log(data);
+                $("#reportDisplayDiv").html("<div id=\"reportDisplayDiv\" class=\"row\"></div>");
                 data.forEach(function(report) {
                     $("#reportDisplayDiv").append("<div class=\"col-md-4\"><div class=\"products_box\"><h4>Instant Report</h4><p class=\"products_price\">99</p><ul class=\"products_list\"><li>Address: "  + report.address + "</li><li>MLS: " + report.mls + "</li><li>Inspector: " + report.inspector + "</li></ul><div><a href=\"javascript'';\" class=\"btn_type1\"><span>Order Now</span></a></div></div></div>");
                 });
@@ -22,16 +22,3 @@ $( document ).ready(function() {
         });
     });
 });
-
-
-// $.get( "/reports/getreportsbymls", { mls: $("#searchBox").val()} )
-//     .done(function( data ) {
-//         console.log(data);
-//         // $("#searchResultList").html("");
-//         // data.forEach(function(item){
-//         //     console.log(item);
-//         //     $("#searchResultList").append("<li><a href='/pdf/"+ item.mls + ".pdf'>" + item.address +"</a></li>");
-//         // });
-//     });
-//
-// event.preventDefault();
