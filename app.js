@@ -1,11 +1,3 @@
-//Test
-const keyPublishable = "pk_test_Qy30tfLZhKSn4pEFoIo3zeIj";
-const keySecret = "sk_test_rGmApxU2IwX1QI1KkkRZBtV5";
-
-//Live
-//const keyPublishable = "pk_live_lpH0j5q53cvx2A2xTIyEfQIO";
-//const keySecret = "sk_live_cAEIaEXB48tk5Hz7DpAQus11";
-
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -21,7 +13,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
-const stripeInstance = require("stripe")(keySecret);
+
 
 
 
@@ -92,11 +84,6 @@ app.use(function (req, res, next) {
     next();
 });
 
-// Make our db accessible to our router
-app.use(function(req,res,next){
-    req.stripe = stripe;
-    next();
-});
 
 app.use('/', index);
 app.use('/users', users);

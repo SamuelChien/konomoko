@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+//Test: sk_test_rGmApxU2IwX1QI1KkkRZBtV5   Live: sk_live_cAEIaEXB48tk5Hz7DpAQus11
+const stripe = require("stripe")("sk_test_rGmApxU2IwX1QI1KkkRZBtV5");
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -7,20 +9,28 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/charge', function(req, res, next) {
-    let amount = 500;
-    let stripe = req.stripe;
-    stripe.customers.create({
-        email: req.body.email,
-        card: req.body.id
-    }).then(customer =>
+    var email = req.query.email;
+    var reportId = req.query.reportId;
+    var tokenId = req.query.token_id;
+
+    let amount = 9900;
+
+    // Charge the user's card:
     stripe.charges.create({
-        amount,
-        description: "Sample Charge",
+        amount: amount,
         currency: "usd",
-        customer: customer.id
-    })).then(charge => res.send(charge)).catch(err => {
-        console.log("Error:", err);
-        res.status(500).send({error: "Purchase Failed"});
+        description: "Konomoko Inspection",
+        metadata: {report: reportId, buyer:email},
+        source: tokenId,
+    }, function(err, charge) {
+        if(err)
+        {
+            return res(err);
+        }
+        else
+        {
+            return res.send('Thank you for choosing Konomoko. Report has been sent to your email. Enjoy! ');
+        }
     });
 });
 

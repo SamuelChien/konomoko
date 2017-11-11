@@ -1,6 +1,6 @@
 'use strict';
 
-var stripe = Stripe('pk_test_6pRNASCoBOKtIshFeQd4XMUh');
+var stripe = Stripe('pk_test_Qy30tfLZhKSn4pEFoIo3zeIj');
 
 function registerElements(elements, exampleName) {
   var formClass = '.' + exampleName;
@@ -61,6 +61,9 @@ function registerElements(elements, exampleName) {
     var city = form.querySelector('#' + exampleName + '-city');
     var state = form.querySelector('#' + exampleName + '-state');
     var zip = form.querySelector('#' + exampleName + '-zip');
+    var reportId = form.querySelector('#hiddenReportId');
+    var email = form.querySelector('#example2-email');
+
     var additionalData = {
       name: name ? name.value : undefined,
       address_line1: address1 ? address1.value : undefined,
@@ -77,8 +80,12 @@ function registerElements(elements, exampleName) {
       example.classList.remove('submitting');
 
       if (result.token) {
-        // If we received a token, show the token ID.
-        example.querySelector('.token').innerText = result.token.id;
+          alert(result.token.id);
+          alert(reportId.value);
+          alert(email.value);
+          $.get( "/stripe/charge", { token_id: result.token.id, reportId: reportId.value, email: email.value}).done(function( data ) {
+            $("#successMessage").text(data);
+          });
         example.classList.add('submitted');
       } else {
         // Otherwise, un-disable inputs.
@@ -104,5 +111,8 @@ function registerElements(elements, exampleName) {
     // Resetting the form does not un-disable inputs, so we need to do it separately:
     enableInputs();
     example.classList.remove('submitted');
+    $("#paymentForm").hide();
+    $('html,body').animate({ scrollTop: $("#section1").offset().top - 100}, 'slow');
+
   });
 }
