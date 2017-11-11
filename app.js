@@ -35,6 +35,7 @@ var reports = require('./routes/reports');
 var dashboard = require('./routes/dashboard');
 var login = require('./routes/login');
 var stripe = require('./routes/stripe');
+var upload = require('./routes/upload');
 
 var app = express();
 
@@ -103,6 +104,7 @@ app.use('/reports', reports);
 app.use('/dashboard', dashboard);
 app.use('/login', login);
 app.use('/stripe', stripe);
+app.use('/upload', upload);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
