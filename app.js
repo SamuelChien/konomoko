@@ -28,6 +28,7 @@ var dashboard = require('./routes/dashboard');
 var login = require('./routes/login');
 var stripe = require('./routes/stripe');
 var upload = require('./routes/upload');
+var profile = require('./routes/profile');
 
 var app = express();
 
@@ -92,6 +93,8 @@ app.use('/dashboard', dashboard);
 app.use('/login', login);
 app.use('/stripe', stripe);
 app.use('/upload', upload);
+app.use('/profile', profile);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
