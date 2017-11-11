@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 //Test: sk_test_rGmApxU2IwX1QI1KkkRZBtV5   Live: sk_live_cAEIaEXB48tk5Hz7DpAQus11
 const stripe = require("stripe")("sk_test_rGmApxU2IwX1QI1KkkRZBtV5");
+const emailHelper = require('../lib/email')
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -29,6 +30,7 @@ router.get('/charge', function(req, res, next) {
         }
         else
         {
+            emailHelper.emailCustomerReports(email, reportId);
             return res.send('Thank you for choosing Konomoko. Report has been sent to your email. Enjoy! ');
         }
     });

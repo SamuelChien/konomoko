@@ -80,9 +80,6 @@ function registerElements(elements, exampleName) {
       example.classList.remove('submitting');
 
       if (result.token) {
-          alert(result.token.id);
-          alert(reportId.value);
-          alert(email.value);
           $.get( "/stripe/charge", { token_id: result.token.id, reportId: reportId.value, email: email.value}).done(function( data ) {
             $("#successMessage").text(data);
           });
