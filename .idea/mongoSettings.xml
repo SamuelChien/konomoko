@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MongoConfiguration">
+    <option name="serverConfigurations">
+      <list>
+        <ServerConfiguration>
+          <option name="connectOnIdeStartup" value="true" />
+          <option name="label" value="Localhost" />
+          <option name="serverUrls">
+            <list>
+              <option value="localhost:27017" />
+            </list>
+          </option>
+          <option name="sshTunnelingConfiguration">
+            <SshTunnelingConfiguration />
+          </option>
+        </ServerConfiguration>
+        <ServerConfiguration>
+          <option name="authenticationDatabase" value="konomoko" />
+          <option name="connectOnIdeStartup" value="true" />
+          <option name="label" value="CosmosDB" />
+          <option name="password" value="BRuFfI4XaJ6Y5vIwaMbLiMe2CSAoZCHTa0ktQWspQ9uoxkFInOcHsL3ak9sIeirMHW6hcWJ80OcVBMgCaN0yGQ==" />
+          <option name="serverUrls">
+            <list>
+              <option value="konomoko.documents.azure.com:10255" />
+            </list>
+          </option>
+          <option name="sshTunnelingConfiguration">
+            <SshTunnelingConfiguration />
+          </option>
+          <option name="sslConnection" value="true" />
+          <option name="userDatabase" value="konomoko" />
+          <option name="username" value="konomoko" />
+        </ServerConfiguration>
+      </list>
+    </option>
+    <option name="shellPath" value="/usr/local/Cellar/mongodb/3.4.9/bin/mongo" />
+  </component>
+</project>
