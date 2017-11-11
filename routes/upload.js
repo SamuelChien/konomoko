@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const Report = require('../models/report');
 // Handles multi-part media
 const path = require('path');
 const multer = require('multer')
@@ -32,11 +33,20 @@ router.get('/', function(req, res, next) {
 
 /* POST to upload report to Storage. */
 router.post('/', upload, function(req, res, next) {
-    console.log(req.body);
     console.log(req.file);
     if(!req.file) {
       res.send("Only PDF under 5MB can be uploaded.");
     }
+
+    const report = new Report({
+      report_id: req.file.blob,
+      // mls: req.mls,
+      // address: req.address,
+      // uploader: req.uploader,
+      storage_location: req.file.url
+    });
+    report.save();
+
     res.send("Uploaded 200 OK.");
 });
 

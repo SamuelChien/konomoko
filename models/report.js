@@ -1,8 +1,8 @@
-var mongoose = require('mongoose');
-var bcrypt = require('bcryptjs');
+const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
 
 // Report Schema
-var ReportSchema = mongoose.Schema({
+const ReportSchema = mongoose.Schema({
     report_id: {
         type: String,
         index:true
@@ -13,16 +13,19 @@ var ReportSchema = mongoose.Schema({
     address: {
         type: String
     },
-    inspector: {
+    uploader: {
         type: String
     },
-    pdfId: {
+    storage_location: {
         type: String
+    },
+    time : {
+        type: Date, 
+        default: Date.now 
     }
-
 });
 
-var Report = module.exports = mongoose.model('Report', ReportSchema);
+const Report = module.exports = mongoose.model('Report', ReportSchema);
 
 module.exports.getFuzzySearch = function(searchTerm, callback){
     Report.find({$or:[{"mls":{$regex:searchTerm}}, {"address":{$regex:searchTerm}}]}, callback);
