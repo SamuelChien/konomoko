@@ -1,3 +1,11 @@
+//Test
+const keyPublishable = "pk_test_Qy30tfLZhKSn4pEFoIo3zeIj";
+const keySecret = "sk_test_rGmApxU2IwX1QI1KkkRZBtV5";
+
+//Live
+//const keyPublishable = "pk_live_lpH0j5q53cvx2A2xTIyEfQIO";
+//const keySecret = "sk_live_cAEIaEXB48tk5Hz7DpAQus11";
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -5,33 +13,28 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var MongoClient = require('mongodb').MongoClient;
-var db;
+
+var expressValidator = require('express-validator');
+var flash = require('connect-flash');
+var session = require('express-session');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var mongo = require('mongodb');
+var mongoose = require('mongoose');
+const stripeInstance = require("stripe")(keySecret);
 
 
 
-// Initialize connection once
-// MongoClient.connect("mongodb://localhost:27017/konomoko", function(err, database) {
-//     if(err) return console.error(err);
-//
-//     db = database;
-//
-//     console.log(db);
-//     // the Mongo driver recommends starting the server here because most apps *should* fail to start if they have no DB.  If yours is the exception, move the server startup elsewhere.
-// });
-
-MongoClient.connect("mongodb://konomoko:BRuFfI4XaJ6Y5vIwaMbLiMe2CSAoZCHTa0ktQWspQ9uoxkFInOcHsL3ak9sIeirMHW6hcWJ80OcVBMgCaN0yGQ==@konomoko.documents.azure.com:10255/konomoko?ssl=true", function(err, database) {
-    if(err) return console.error(err);
-
-    db = database;
-    // the Mongo driver recommends starting the server here because most apps *should* fail to start if they have no DB.  If yours is the exception, move the server startup elsewhere.
-});
+//Initialize connection once (localhost "mongodb://localhost:27017/konomoko")
+mongoose.connect('mongodb://konomoko:BRuFfI4XaJ6Y5vIwaMbLiMe2CSAoZCHTa0ktQWspQ9uoxkFInOcHsL3ak9sIeirMHW6hcWJ80OcVBMgCaN0yGQ==@konomoko.documents.azure.com:10255/konomoko?ssl=true', { useMongoClient: true,});
+var db = mongoose.connection;
 
 var index = require('./routes/index');
 var users = require('./routes/users');
 var reports = require('./routes/reports');
 var dashboard = require('./routes/dashboard');
 var login = require('./routes/login');
+var stripe = require('./routes/stripe');
 
 var app = express();
 
@@ -47,9 +50,50 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Express Session
+app.use(session({
+    secret: 'secret',
+    saveUninitialized: true,
+    resave: true
+}));
+
+// Passport init
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Express Validator
+app.use(expressValidator({
+    errorFormatter: function(param, msg, value) {
+        var namespace = param.split('.')
+            , root    = namespace.shift()
+            , formParam = root;
+
+        while(namespace.length) {
+            formParam += '[' + namespace.shift() + ']';
+        }
+        return {
+            param : formParam,
+            msg   : msg,
+            value : value
+        };
+    }
+}));
+
+// Connect Flash
+app.use(flash());
+
+// Global Vars
+app.use(function (req, res, next) {
+    res.locals.success_msg = req.flash('success_msg');
+    res.locals.error_msg = req.flash('error_msg');
+    res.locals.error = req.flash('error');
+    res.locals.user = req.user || null;
+    next();
+});
+
 // Make our db accessible to our router
 app.use(function(req,res,next){
-    req.db = db;
+    req.stripe = stripe;
     next();
 });
 
@@ -58,6 +102,7 @@ app.use('/users', users);
 app.use('/reports', reports);
 app.use('/dashboard', dashboard);
 app.use('/login', login);
+app.use('/stripe', stripe);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
