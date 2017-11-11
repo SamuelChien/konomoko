@@ -35,6 +35,7 @@ var reports = require('./routes/reports');
 var dashboard = require('./routes/dashboard');
 var login = require('./routes/login');
 var stripe = require('./routes/stripe');
+var upload = require('./routes/upload');
 
 var app = express();
 
