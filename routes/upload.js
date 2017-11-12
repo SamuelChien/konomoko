@@ -33,6 +33,7 @@ router.get('/', function(req, res, next) {
 
 /* POST to upload report to Storage. */
 router.post('/', upload, function(req, res, next) {
+    console.log(req.body);
     console.log(req.file);
     if(!req.file) {
       res.send("Only PDF under 5MB can be uploaded.");
