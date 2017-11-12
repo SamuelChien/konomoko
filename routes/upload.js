@@ -25,30 +25,27 @@ const upload = multer({
       limits: { fileSize: 5000000 } // 5MB
     }).single('report');
 
-/* GET upload form */
-router.get('/', function(req, res, next) {
-    res.render('upload', { title: 'Upload' });
-});
-
 
 /* POST to upload report to Storage. */
-router.post('/', upload, function(req, res, next) {
+router.post('/', upload, function(req, res) {
     console.log(req.body);
     console.log(req.file);
+    // console.log(res);
     if(!req.file) {
       res.send("Only PDF under 5MB can be uploaded.");
     }
 
     const report = new Report({
       report_id: req.file.blob,
-      mls: "1234",
-      address: "abc Rodeo Drive",
-      uploader: "1",
+      mls: req.body.mls,
+      address: req.body.address,
+      uploader: "johnny",
       storage_location: req.file.url
     });
     report.save();
 
-    res.send("Uploaded 200 OK.");
+    res.redirect('dashboard');
+
 });
 
 module.exports = router;
