@@ -20,8 +20,7 @@ const User = require('./models/user');
 mongoose.connect('mongodb://konomoko:BRuFfI4XaJ6Y5vIwaMbLiMe2CSAoZCHTa0ktQWspQ9uoxkFInOcHsL3ak9sIeirMHW6hcWJ80OcVBMgCaN0yGQ==@konomoko.documents.azure.com:10255/konomoko?ssl=true', { useMongoClient: true,});
 const db = mongoose.connection;
 
-// const index = require('./routes/index')(passport);
-const index = require('./routes/index');
+const index = require('./routes/index')(passport);
 const users = require('./routes/users');
 const reports = require('./routes/reports');
 const dashboard = require('./routes/dashboard');

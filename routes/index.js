@@ -1,60 +1,75 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const Report = require('../models/report');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Home' });
-});
-module.exports = router;
+// router.get('/', function(req, res, next) {
+//   res.render('index', { title: 'Home' });
+// });
+// module.exports = router;
 
-// var isAuthenticated = function (req, res, next) {
-//   // if user is authenticated in the session, call the next() to call the next request handler 
-//   // Passport adds this method to request object. A middleware is allowed to add properties to
-//   // request and response objects
-//   if (req.isAuthenticated())
-//     return next();
-//   // if the user is not authenticated then redirect him to the login page
-//   res.redirect('/');
-// }
+var isAuthenticated = function (req, res, next) {
+  // if user is authenticated in the session, call the next() to call the next request handler 
+  // Passport adds this method to request object. A middleware is allowed to add properties to
+  // request and response objects
+  if (req.isAuthenticated())
+    return next();
+  // if the user is not authenticated then redirect him to the login page
+  res.redirect('/login');
+}
 
-// module.exports = function(passport){
+module.exports = function(passport){
 
-//   /* GET login page. */
-//   // router.get('/', function(req, res) {
-//   //     // Display the Login page with any flash message, if any
-//   //   // res.render('index', { message: req.flash('message') });
-//   //   res.render('index', { message: req.flash('message') });
-//   // });
+  /* GET login page. */
+  router.get('/', function(req, res) {
+    // Display the Login page with any flash message, if any
+    res.render('index', { message: req.flash('message') });
+  });
 
-//   /* GET Registration Page */
-//   // router.get('/signup', function(req, res){
-//   //   res.render('auth/login',{message: req.flash('message')});
-//   // });
+  /* GET Registration Page */
+  // router.get('/signup', function(req, res){
+  //   res.render('auth/login',{message: req.flash('message')});
+  // });
 
-//   // /* Return Dashboard if user is logged in */
-//   // router.get('/dashboard', isAuthenticated, function(req, res){
-//   //   res.render('dashboard/dashboard', { user: req.user });
-//   // });
+  /* Handle Registration POST */
+  // router.post('/signup', passport.authenticate('signup', {
+  //   successRedirect: '/dashboard',
+  //   failureRedirect: '/signup',
+  //   failureFlash : true  
+  // }));
 
-//   /* Handle Logout */
-//   // router.get('/signout', function(req, res) {
-//   //   req.logout();
-//   //   res.redirect('/');
-//   // });
+  /* Return Dashboard if user is logged in */
+  router.get('/dashboard', isAuthenticated, function(req, res){
+    Report
+    .find()
+    .where('uploader_id').equals('johnny')
+    .sort({ timestamp: -1 }).
+    exec(function (err, reports) {
+      if (err) console.log(err);
+      console.log(reports);
+      res.render('dashboard/dashboard',
+        { title: 'Dashboard',
+          reports: reports
+        });
+    });
+  });
 
-//   //   /* Handle Login POST */
-//   // router.post('/login', passport.authenticate('login', {
-//   //   successRedirect: '/dashboard',
-//   //   failureRedirect: '/login',
-//   //   failureFlash : true  
-//   // }));
+  /* Handle Login POST */
+  router.post('/login', passport.authenticate('login', {
+    successRedirect: '/dashboard',
+    failureRedirect: '/login',
+    failureFlash : true  
+  }));
 
-//   // /* Handle Registration POST */
-//   // router.post('/signup', passport.authenticate('signup', {
-//   //   successRedirect: '/dashboard',
-//   //   failureRedirect: '/signup',
-//   //   failureFlash : true  
-//   // }));
+  /* Handle Login GET */
+  router.get('/login', function(req, res, next) {
+    res.render('auth/login', { title: 'Login' });
+  });
 
-//   return router;
-// }
+  router.get('/logout', function (req, res, next) {
+    req.logout();
+    res.redirect('/');
+  });
+
+  return router;
+}

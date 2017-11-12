@@ -20,7 +20,8 @@ var UserSchema = mongoose.Schema({
         type: String
     },
     isVerified:{
-        type: Boolean
+        type: Boolean,
+        default: false
     }
 
 });
