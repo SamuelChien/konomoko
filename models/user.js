@@ -15,7 +15,14 @@ var UserSchema = mongoose.Schema({
     },
     name: {
         type: String
+    },
+    phone: {
+        type: String
+    },
+    isVerified:{
+        type: Boolean
     }
+
 });
 
 var User = module.exports = mongoose.model('User', UserSchema);

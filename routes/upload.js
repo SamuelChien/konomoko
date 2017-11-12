@@ -41,9 +41,9 @@ router.post('/', upload, function(req, res, next) {
 
     const report = new Report({
       report_id: req.file.blob,
-      // mls: req.mls,
-      // address: req.address,
-      // uploader: req.uploader,
+      mls: "1234",
+      address: "abc Rodeo Drive",
+      uploader: "1",
       storage_location: req.file.url
     });
     report.save();
