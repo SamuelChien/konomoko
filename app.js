@@ -1,36 +1,36 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+const express = require('express');
+const path = require('path');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const mongo = require('mongodb');
+const mongoose = require('mongoose');
 
-
-var expressValidator = require('express-validator');
-var flash = require('connect-flash');
-var session = require('express-session');
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
-var mongo = require('mongodb');
-var mongoose = require('mongoose');
-
-
+// Configuring Passport
+const expressValidator = require('express-validator');
+const flash = require('connect-flash');
+const session = require('express-session');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const User = require('./models/user');
 
 
 //Initialize connection once (localhost "mongodb://localhost:27017/konomoko")
 mongoose.connect('mongodb://konomoko:BRuFfI4XaJ6Y5vIwaMbLiMe2CSAoZCHTa0ktQWspQ9uoxkFInOcHsL3ak9sIeirMHW6hcWJ80OcVBMgCaN0yGQ==@konomoko.documents.azure.com:10255/konomoko?ssl=true', { useMongoClient: true,});
-var db = mongoose.connection;
+const db = mongoose.connection;
 
-var index = require('./routes/index');
-var users = require('./routes/users');
-var reports = require('./routes/reports');
-var dashboard = require('./routes/dashboard');
-var login = require('./routes/login');
-var stripe = require('./routes/stripe');
-var upload = require('./routes/upload');
-var profile = require('./routes/profile');
+// const index = require('./routes/index')(passport);
+const index = require('./routes/index');
+const users = require('./routes/users');
+const reports = require('./routes/reports');
+const dashboard = require('./routes/dashboard');
+const login = require('./routes/login');
+const stripe = require('./routes/stripe');
+const upload = require('./routes/upload');
+const profile = require('./routes/profile');
 
-var app = express();
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -44,17 +44,17 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+// Configuring Passport
 // Express Session
 app.use(session({
     secret: 'secret',
     saveUninitialized: true,
     resave: true
 }));
-
 // Passport init
 app.use(passport.initialize());
 app.use(passport.session());
-
 // Express Validator
 app.use(expressValidator({
     errorFormatter: function(param, msg, value) {
@@ -72,9 +72,15 @@ app.use(expressValidator({
         };
     }
 }));
-
 // Connect Flash
 app.use(flash());
+
+// =============  Begin: Initialize Passport ================
+// Initialize Passport
+var initPassport = require('./passport/init');
+initPassport(passport);
+
+// =============  End: Initialize Passport ================
 
 // Global Vars
 app.use(function (req, res, next) {
@@ -95,7 +101,6 @@ app.use('/stripe', stripe);
 app.use('/upload', upload);
 app.use('/profile', profile);
 
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
@@ -113,5 +118,16 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+// route middleware to make sure a user is logged in
+function isLoggedIn(req, res, next) {
+
+    // if user is authenticated in the session, carry on 
+    if (req.isAuthenticated())
+        return next();
+
+    // if they aren't redirect them to the home page
+    res.redirect('/');
+}
 
 module.exports = app;

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" >
+  <% include _htmlHead %>
+  <!-- end::Body -->
+  <body class="m--skin- m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default" >
+    <!-- begin:: Page -->
+    <div class="m-grid m-grid--hor m-grid--root m-page">
+      <div class="m-login m-login--singin  m-login--5" id="m_login">
+        <div class="m-login__wrapper-1 m-portlet-full-height">
+          <div class="m-login__wrapper-1-1">
+            <div class="m-login__contanier">
+              <div class="m-login__content">
+                <div class="m-login__title">
+                  <h3>
+                    Konomoko
+                  </h3>
+                </div>
+                <div class="m-login__desc">
+                  Instant Report, Schedule Inspection, Upload For Money
+                </div>
+                <div class="m-login__form-action">
+                  <button type="button" id="m_login_signup" class="btn btn-outline-focus m-btn--pill">
+                    Create Account
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="m-login__border">
+              <div></div>
+            </div>
+          </div>
+        </div>
+        <div class="m-login__wrapper-2 m-portlet-full-height">
+          <div class="m-login__contanier">
+            <% include _loginForm %>
+            <% include _signupForm %>
+            <% include _forgetPassword %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end:: Page -->
+    <% include _scripts %>
+  </body>
+  <!-- end::Body -->
+</html>
