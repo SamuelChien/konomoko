@@ -3,6 +3,7 @@ var router = express.Router();
 //Test: sk_test_rGmApxU2IwX1QI1KkkRZBtV5   Live: sk_live_cAEIaEXB48tk5Hz7DpAQus11
 const stripe = require("stripe")("sk_test_rGmApxU2IwX1QI1KkkRZBtV5");
 const emailHelper = require('../lib/email')
+const Report = require('../models/report');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -39,10 +40,9 @@ router.get('/scheduleCharge', function(req, res, next) {
 
 router.get('/charge', function(req, res, next) {
     var email = req.query.email;
-    var reportId = req.query.report_id;
     var tokenId = req.query.token_id;
     var phoneNum = req.query.phone;
-
+    var reportId = req.query.report_id;
     let amount = 9900;
 
     // Charge the user's card:
@@ -59,8 +59,11 @@ router.get('/charge', function(req, res, next) {
         }
         else
         {
-            //emailHelper.emailCustomerReports(email, reportId);
-            return res.send('Thank you for choosing Konomoko. Report has been sent to your email. Enjoy! ');
+            Report.getReportById(reportId, function (err, report){
+                //TODO: get the real rating
+                emailHelper.emailCustomerReports(email, report.storage_location);
+                return res.send('Thank you for choosing Konomoko. Report has been sent to your email. Enjoy!');
+            });
         }
     });
 });

@@ -29,3 +29,7 @@ const Report = module.exports = mongoose.model('Report', ReportSchema);
 module.exports.getFuzzySearch = function(searchTerm, callback){
     Report.find({$or:[{"mls":{$regex:searchTerm}}, {"address":{$regex:searchTerm}}]}, callback);
 }
+
+module.exports.getReportById = function(id, callback){
+    Report.findOne({"report_id":id}, callback);
+}
