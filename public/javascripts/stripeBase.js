@@ -61,8 +61,11 @@ function registerElements(elements, exampleName) {
     var city = form.querySelector('#' + exampleName + '-city');
     var state = form.querySelector('#' + exampleName + '-state');
     var zip = form.querySelector('#' + exampleName + '-zip');
-    var reportId = form.querySelector('#hiddenReportId');
-    var email = form.querySelector('#example2-email');
+    var reportId = form.querySelector('#hiddenReportId').value;
+    var email = form.querySelector('#example2-email').value;
+    var phone = form.querySelector('#example2-cell').value;
+    var buyReportOption = form.querySelector('#hiddenBuyReportOption').value;
+    var searchTerm = $(".scheduleReport").attr('href');
 
     var additionalData = {
       name: name ? name.value : undefined,
@@ -80,10 +83,20 @@ function registerElements(elements, exampleName) {
       example.classList.remove('submitting');
 
       if (result.token) {
-          $.get( "/stripe/charge", { token_id: result.token.id, reportId: reportId.value, email: email.value}).done(function( data ) {
-            $("#successMessage").text(data);
-          });
-        example.classList.add('submitted');
+          if(buyReportOption == "true")
+          {
+              $.get( "/stripe/charge", { token_id: result.token.id, report_id: reportId, email: email, phone:phone}).done(function( data ) {
+                  $("#successMessage").text(data);
+              });
+          }
+          else
+          {
+              $.get( "/stripe/scheduleCharge", { token_id: result.token.id, searchPhrase: searchTerm, email: email, phone:phone}).done(function( data ) {
+                  $("#successMessage").text(data);
+              });
+          }
+
+          example.classList.add('submitted');
       } else {
         // Otherwise, un-disable inputs.
         enableInputs();

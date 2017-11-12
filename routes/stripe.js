@@ -9,19 +9,20 @@ router.get('/', function(req, res, next) {
     res.send('respond with a resource');
 });
 
-router.get('/charge', function(req, res, next) {
+router.get('/scheduleCharge', function(req, res, next) {
     var email = req.query.email;
-    var reportId = req.query.reportId;
+    var searchPhrase = req.query.searchPhrase;
     var tokenId = req.query.token_id;
+    var phoneNum = req.query.phone;
 
-    let amount = 9900;
+    let amount = 25000;
 
     // Charge the user's card:
     stripe.charges.create({
         amount: amount,
         currency: "usd",
         description: "Konomoko Inspection",
-        metadata: {report: reportId, buyer:email},
+        metadata: {mls: searchPhrase, buyer:email, phone:phoneNum},
         source: tokenId,
     }, function(err, charge) {
         if(err)
@@ -30,7 +31,35 @@ router.get('/charge', function(req, res, next) {
         }
         else
         {
-            emailHelper.emailCustomerReports(email, reportId);
+            emailHelper.emailAdminForSchedule(email, searchPhrase, phoneNum);
+            return res.send('Thank you for choosing Konomoko. We will schedule the inspection within 48 hours. Enjoy!');
+        }
+    });
+});
+
+router.get('/charge', function(req, res, next) {
+    var email = req.query.email;
+    var reportId = req.query.report_id;
+    var tokenId = req.query.token_id;
+    var phoneNum = req.query.phone;
+
+    let amount = 9900;
+
+    // Charge the user's card:
+    stripe.charges.create({
+        amount: amount,
+        currency: "usd",
+        description: "Konomoko Inspection",
+        metadata: {report: reportId, buyer:email, phone:phoneNum},
+        source: tokenId,
+    }, function(err, charge) {
+        if(err)
+        {
+            return res(err);
+        }
+        else
+        {
+            //emailHelper.emailCustomerReports(email, reportId);
             return res.send('Thank you for choosing Konomoko. Report has been sent to your email. Enjoy! ');
         }
     });
