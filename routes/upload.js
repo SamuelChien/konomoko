@@ -22,7 +22,7 @@ const upload = multer({
         }
         cb(null, true)
       },
-      limits: { fileSize: 5000000 } // 5MB
+      limits: { fileSize: 500000000 } // 50MB
     }).single('report');
 
 
