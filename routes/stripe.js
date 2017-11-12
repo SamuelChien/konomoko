@@ -4,6 +4,8 @@ var router = express.Router();
 const stripe = require("stripe")("sk_test_rGmApxU2IwX1QI1KkkRZBtV5");
 const emailHelper = require('../lib/email')
 const Report = require('../models/report');
+const Schedule = require('../models/schedule');
+const Transaction = require('../models/transaction');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -32,6 +34,13 @@ router.get('/scheduleCharge', function(req, res, next) {
         }
         else
         {
+            const schedule = new Schedule({
+                buyer_email: email,
+                buyer_phone: phoneNum,
+                schedule_searchTerm: searchPhrase
+            });
+            schedule.save();
+
             emailHelper.emailAdminForSchedule(email, searchPhrase, phoneNum);
             return res.send('Thank you for choosing Konomoko. We will schedule the inspection within 48 hours. Enjoy!');
         }
@@ -59,6 +68,13 @@ router.get('/charge', function(req, res, next) {
         }
         else
         {
+            const transaction = new Transaction({
+                buyer_email: email,
+                buyer_phone: phoneNum,
+                report_id: reportId
+            });
+            transaction.save();
+
             Report.getReportById(reportId, function (err, report){
                 //TODO: get the real rating
                 emailHelper.emailCustomerReports(email, report.storage_location);

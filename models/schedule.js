@@ -1,18 +1,18 @@
 const mongoose = require('mongoose');
 
 // Transaction Schema
-const TransactionSchema = mongoose.Schema({
-    transaction_id: {
+const ScheduleSchema = mongoose.Schema({
+    schedule_id: {
         type: String,
         index:true
-    },
-    report_id: {
-        type: String
     },
     buyer_email: {
         type: String
     },
     buyer_phone: {
+        type: String
+    },
+    schedule_searchTerm: {
         type: String
     },
     time : {
@@ -21,4 +21,4 @@ const TransactionSchema = mongoose.Schema({
     }
 });
 
-const Transaction = module.exports = mongoose.model('Transaction', TransactionSchema);
+const Schedule = module.exports = mongoose.model('Schedule', ScheduleSchema);
