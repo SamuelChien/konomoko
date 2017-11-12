@@ -12,13 +12,21 @@ const ReportSchema = mongoose.Schema({
     address: {
         type: String
     },
-    uploader: {
+    uploader_id: {
         type: String
     },
     storage_location: {
         type: String
     },
-    time : {
+    number_of_sales: {
+        type: Number,
+        default: 0
+    },
+    total_earning: {
+        type: Number,
+        default: 0
+    },
+    timestamp : {
         type: Date, 
         default: Date.now 
     }

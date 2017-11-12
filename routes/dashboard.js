@@ -1,10 +1,21 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const Report = require('../models/report');
 
 /* GET dashboard page. */
 router.get('/', function(req, res, next) {
-    
-    res.render('dashboard/dashboard', { title: 'Dashboard' });
+    Report
+    .find()
+    .where('uploader_id').equals('johnny')
+    .sort({ timestamp: -1 }).
+    exec(function (err, reports) {
+      if (err) console.log(err);
+      console.log(reports);
+      res.render('dashboard/dashboard',
+        { title: 'Dashboard',
+          reports: reports
+        });
+    });
 });
 
 // function ensureAuthenticated(req, res, next){

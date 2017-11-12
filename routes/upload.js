@@ -28,9 +28,6 @@ const upload = multer({
 
 /* POST to upload report to Storage. */
 router.post('/', upload, function(req, res) {
-    console.log(req.body);
-    console.log(req.file);
-    // console.log(res);
     if(!req.file) {
       res.send("Only PDF under 5MB can be uploaded.");
     }
@@ -39,13 +36,11 @@ router.post('/', upload, function(req, res) {
       report_id: req.file.blob,
       mls: req.body.mls,
       address: req.body.address,
-      uploader: "johnny",
+      uploader_id: "johnny",
       storage_location: req.file.url
     });
     report.save();
-
     res.redirect('dashboard');
-
 });
 
 module.exports = router;

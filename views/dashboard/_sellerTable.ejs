@@ -1,4 +1,4 @@
-<!--begin::Widget 11-->
+<!-- begin::Widget 11-->
 <div class="m-widget11">
   <div class="table-responsive">
     <!--begin::Table-->
@@ -20,31 +20,46 @@
           <td class="m-widget11__app">
             Total
           </td>
-          <td class="m-widget11__total m--align-right">
+<!--           <td class="m-widget11__total m--align-right">
             Actions
-          </td>
+          </td> -->
         </tr>
       </thead>
       <!--end::Thead-->
       <!--begin::Tbody-->
       <tbody>
-        <tr>
-          <td class="m-widget11__app">
-            1939402
-          </td>
+        <!--begin::Loop-->
+        <% reports.forEach(function(report){ %>
+            <tr>
+            <!-- MLS Number -->
+            <td class="m-widget11__app">
+              <%=report.mls%>
+            </td>
 
-          <td class="m-widget11__app">
-            1 Infinite Loop
-          </td>
+            <!-- Address -->
+            <td class="m-widget11__app">
+              <%=report.address%>
+            </td>
 
-          <td class="m-widget11__app">
-            9
-          </td>
-          <td class="m-widget11__app">
-            $630
-          </td>
-          <td data-field="Actions" class="m-widget11__total m--align-right"><span style="overflow: visible; width: 110px;">                            <a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" title="Edit details">                            <i class="la la-edit"></i>                        </a>                                            </span></td>
-        </tr>
+            <!-- Number of Sales -->
+            <td class="m-widget11__app">
+              <%=report.number_of_sales%>
+            </td>
+
+            <!-- Total Earning -->
+            <td class="m-widget11__app">
+              $<%=report.total_earning%>
+            </td>
+<!--             <td data-field="Actions" class="m-widget11__total m--align-right">
+              <span style="overflow: visible; width: 110px;">
+                <a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" title="Edit details">
+                  <i class="la la-edit"></i>
+                </a>
+              </span>
+            </td> -->
+          </tr>
+        <% }) %>
+        <!--end::Loop-->
       </tbody>
       <!--end::Tbody-->
     </table>
@@ -56,4 +71,4 @@
     </button>
   </div>
 </div>
-<!--end::Widget 11-->
+<!--end::Widget 11 -->
