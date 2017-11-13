@@ -1,4 +1,7 @@
 $( document ).ready(function() {
+    $("#loginNavBtn").click(function(){
+        window.location.href = "/dashboard";
+    });
 
     $("#paymentForm").hide();
 
