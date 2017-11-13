@@ -37,9 +37,14 @@ var SnippetLogin = function() {
             //     t.valid() && (a.addClass("m-loader m-loader--right m-loader--light").attr("disabled", !0),
             //       t.ajaxSubmit(
             //         { url: "/login", success: function(e, r, n, l) {
-            //           setTimeout(function() {
-            //             a.removeClass("m-loader m-loader--right m-loader--light").attr("disabled", !1),
-            //             i(t, "danger", "Incorrect username or password. Please try again.") }, 2e3) } }))
+	           //            setTimeout(function() {
+	           //              a.removeClass("m-loader m-loader--right m-loader--light").attr("disabled", !1),
+	           //              i(t, "danger", "Incorrect username or password. Please try again.")
+	           //            }, 2e3)
+            //         	}
+            //         }
+            //       )
+            //     )
             // })
         },
         signUpSubmit = function() {

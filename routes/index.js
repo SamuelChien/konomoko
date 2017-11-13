@@ -42,14 +42,15 @@ module.exports = function(passport){
   router.get('/dashboard', isAuthenticated, function(req, res){
     Report
     .find()
-    .where('uploader_id').equals('johnny')
+    .where('uploader_id').equals(req.user.username)
     .sort({ timestamp: -1 }).
     exec(function (err, reports) {
       if (err) console.log(err);
-      console.log(reports);
       res.render('dashboard/dashboard',
         { title: 'Dashboard',
-          reports: reports
+          reports: reports,
+          name: req.user.name,
+          email: req.user.email
         });
     });
   });

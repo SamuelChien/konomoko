@@ -31,12 +31,11 @@ router.post('/', upload, function(req, res) {
     if(!req.file) {
       res.send("Only PDF under 5MB can be uploaded.");
     }
-
     const report = new Report({
       report_id: req.file.blob,
       mls: req.body.mls,
       address: req.body.address,
-      uploader_id: "johnny",
+      uploader_id: req.user.username,
       storage_location: req.file.url
     });
     report.save();
