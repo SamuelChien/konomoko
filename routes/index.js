@@ -32,11 +32,11 @@ module.exports = function(passport){
   // });
 
   /* Handle Registration POST */
-  // router.post('/signup', passport.authenticate('signup', {
-  //   successRedirect: '/dashboard',
-  //   failureRedirect: '/signup',
-  //   failureFlash : true  
-  // }));
+  router.post('/signup', passport.authenticate('signup', {
+    successRedirect: '/dashboard',
+    failureRedirect: '/login',
+    failureFlash : true
+  }));
 
   /* Return Dashboard if user is logged in */
   router.get('/dashboard', isAuthenticated, function(req, res){
