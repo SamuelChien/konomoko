@@ -17,6 +17,7 @@
     "express-messages": "*",
     "express-session": "*",
     "express-validator": "*",
+    "js-money": "^0.6.3",
     "mongodb": "*",
     "mongoose": "*",
     "morgan": "~1.9.0",
