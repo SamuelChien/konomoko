@@ -13,7 +13,7 @@ module.exports = function(passport){
 
   /* GET login page. */
   router.get('/', function(req, res) {
-    res.render('index', { message: req.flash('message') });
+    res.render('home/index', { message: req.flash('message') });
   });
 
   /* Handle Registration POST */
@@ -35,7 +35,7 @@ module.exports = function(passport){
         { title: 'Dashboard',
           reports: reports,
           name: req.user.name,
-          email: req.user.email
+          email: req.user.userame
         });
     });
   });
