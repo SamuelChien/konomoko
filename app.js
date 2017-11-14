@@ -13,7 +13,6 @@ const session = require('express-session');
 const passport = require('passport');
 const index = require('./routes/index')(passport);
 const reports = require('./routes/reports');
-const login = require('./routes/login');
 const stripe = require('./routes/stripe');
 const upload = require('./routes/upload');
 const profile = require('./routes/profile');
@@ -50,7 +49,6 @@ app.use(flash());
 
 app.use('/', index);
 app.use('/reports', reports);
-app.use('/login', login);
 app.use('/stripe', stripe);
 app.use('/upload', upload);
 app.use('/profile', profile);
