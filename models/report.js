@@ -22,8 +22,8 @@ const ReportSchema = mongoose.Schema({
         type: Number,
         default: 0
     },
-    total_earning: {
-        type: Number,
+    revenue: {
+        type: Number, // Money is stored in integer. Eg. $10.99 is stored as 1099
         default: 0
     },
     timestamp : {

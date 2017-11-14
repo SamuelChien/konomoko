@@ -1,11 +1,12 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 //Test: sk_test_rGmApxU2IwX1QI1KkkRZBtV5   Live: sk_live_cAEIaEXB48tk5Hz7DpAQus11
 const stripe = require("stripe")("sk_test_rGmApxU2IwX1QI1KkkRZBtV5");
 const emailHelper = require('../lib/email')
 const Report = require('../models/report');
 const Schedule = require('../models/schedule');
 const Transaction = require('../models/transaction');
+const Money = require('js-money');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -13,10 +14,10 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/scheduleCharge', function(req, res, next) {
-    var email = req.query.email;
-    var searchPhrase = req.query.searchPhrase;
-    var tokenId = req.query.token_id;
-    var phoneNum = req.query.phone;
+    const email = req.query.email;
+    const searchPhrase = req.query.searchPhrase;
+    const tokenId = req.query.token_id;
+    const phoneNum = req.query.phone;
 
     let amount = 25000;
 
@@ -76,9 +77,24 @@ router.get('/charge', function(req, res, next) {
             transaction.save();
 
             Report.getReportById(reportId, function (err, report){
-                //TODO: get the real rating
-                emailHelper.emailCustomerReports(email, report.storage_location);
-                return res.send('Thank you for choosing Konomoko. Report has been sent to your email. Enjoy!');
+                /*
+                 * Update the revenue and sales of the report
+                 * Uploader earns $50.00 for every new purchase.
+                **/
+                let chargedAmount = new Money(5000, Money.USD); // $50.00 USD
+                let newRevenue = new Money(report.revenue, Money.USD).add(chargedAmount);
+                report.revenue = newRevenue.amount;
+                report.number_of_sales += 1;
+
+                // Update the database
+                report.markModified('revenue');
+                report.markModified('number_of_sales');
+                report.save(function (err, updatedReport) {
+                    if (err) return res(err);
+                    // Sending the report to buyer.
+                    emailHelper.emailCustomerReports(email, report.storage_location);
+                    return res.send('Thank you for choosing Konomoko. Report has been sent to your email. Enjoy!');
+                });
             });
         }
     });
