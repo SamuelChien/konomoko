@@ -85,18 +85,30 @@ function registerElements(elements, exampleName) {
       if (result.token) {
           if(buyReportOption == "true")
           {
-              $.get( "/stripe/charge", { token_id: result.token.id, report_id: reportId, email: email, phone:phone}).done(function( data ) {
+              var request = $.get( "/stripe/charge", { token_id: result.token.id, report_id: reportId, email: email, phone:phone});
+
+              request.success(function( data ) {
                   $("#successMessage").text(data);
+                  example.classList.add('submitted');
+              });
+
+              request.error(function() {
+                  alert("Payment failure");
               });
           }
           else
           {
-              $.get( "/stripe/scheduleCharge", { token_id: result.token.id, searchPhrase: searchTerm, email: email, phone:phone}).done(function( data ) {
+              var request = $.get( "/stripe/scheduleCharge", { token_id: result.token.id, searchPhrase: searchTerm, email: email, phone:phone});
+
+              request.success(function( data ) {
                   $("#successMessage").text(data);
+                  example.classList.add('submitted');
+              });
+
+              request.error(function() {
+                  alert("Payment failure");
               });
           }
-
-          example.classList.add('submitted');
       } else {
         // Otherwise, un-disable inputs.
         enableInputs();

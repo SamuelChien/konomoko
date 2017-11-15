@@ -66,6 +66,7 @@ router.get('/charge', function(req, res, next) {
     }, function(err, charge) {
         if(err)
         {
+            console.log(err);
             return res(err);
         }
         else
