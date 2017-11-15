@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Report = require('../models/report');
+const Transaction = require('../models/transaction');
 const Money = require('js-money');
 
 var isAuthenticated = function (req, res, next) {
@@ -24,6 +25,7 @@ module.exports = function(passport){
     failureFlash : true
   }));
 
+
   /* Return Dashboard if user is logged in */
   router.get('/dashboard', isAuthenticated, function(req, res){
     Report
@@ -39,14 +41,28 @@ module.exports = function(passport){
         totalRevenue = totalRevenue.add(new Money(report.revenue, Money.USD));
       });
 
-      res.render('dashboard/dashboard',
-        { title: 'Dashboard',
-          reports: reports,
-          name: req.user.name,
-          email: req.user.userame,
-          totalSales: totalSales,
-          totalRevenue: (totalRevenue.amount/100).toFixed(2)
-        });
+        Transaction
+            .find()
+            .where('buyer_email').equals(req.user.username)
+            .exec(function (err, transactions){
+                var report_id_set = new Set();
+                transactions.forEach(function(transaction){
+                    report_id_set.add(transaction.report_id);
+                });
+                Report
+                    .find({'report_id':{ $in: Array.from(report_id_set) }})
+                    .exec(function(err, boughtReports){
+                        res.render('dashboard/dashboard',
+                            { title: 'Dashboard',
+                                reports: reports,
+                                boughtReports: boughtReports,
+                                name: req.user.name,
+                                email: req.user.userame,
+                                totalSales: totalSales,
+                                totalRevenue: (totalRevenue.amount/100).toFixed(2)
+                            });
+                    });
+            });
     });
   });
 

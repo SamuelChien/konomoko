@@ -1,4 +1,8 @@
 $( document ).ready(function() {
+    $("#reportSearch").click(function(){
+        window.location.href = "/";
+    });
+
     $("#loginNavBtn").click(function(){
         window.location.href = "/dashboard";
     });
