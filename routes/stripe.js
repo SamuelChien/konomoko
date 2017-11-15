@@ -25,7 +25,7 @@ router.get('/scheduleCharge', function(req, res, next) {
     stripe.charges.create({
         amount: amount,
         currency: "usd",
-        description: "Konomoko Inspection",
+        description: "MangoInspect Inspection",
         metadata: {mls: searchPhrase, buyer:email, phone:phoneNum},
         source: tokenId,
     }, function(err, charge) {
@@ -44,7 +44,7 @@ router.get('/scheduleCharge', function(req, res, next) {
             schedule.save();
 
             emailHelper.emailAdminForSchedule(email, searchPhrase, phoneNum);
-            return res.send('Thank you for choosing Konomoko. We will schedule the inspection within 48 hours. Enjoy!');
+            return res.send('Thank you for choosing MangoInspect. We will schedule the inspection within 48 hours. Enjoy!');
         }
     });
 });
@@ -60,7 +60,7 @@ router.get('/charge', function(req, res, next) {
     stripe.charges.create({
         amount: amount,
         currency: "usd",
-        description: "Konomoko Inspection",
+        description: "MangoInspect Inspection",
         metadata: {report: reportId, buyer:email, phone:phoneNum},
         source: tokenId,
     }, function(err, charge) {
@@ -95,7 +95,7 @@ router.get('/charge', function(req, res, next) {
                     if (err) return res(err);
                     // Sending the report to buyer.
                     emailHelper.emailCustomerReports(email, report.storage_location);
-                    return res.send('Thank you for choosing Konomoko. Report has been sent to your email. Enjoy!');
+                    return res.send('Thank you for choosing MangoInspect. Report has been sent to your email. Enjoy!');
                 });
             });
         }
