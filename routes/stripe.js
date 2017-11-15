@@ -19,7 +19,7 @@ router.get('/scheduleCharge', function(req, res, next) {
     const tokenId = req.query.token_id;
     const phoneNum = req.query.phone;
 
-    let amount = 25;
+    let amount = 250;
 
     // Charge the user's card:
     stripe.charges.create({
@@ -31,6 +31,7 @@ router.get('/scheduleCharge', function(req, res, next) {
     }, function(err, charge) {
         if(err)
         {
+            console.log(err);
             return res(err);
         }
         else

@@ -18,7 +18,7 @@ $( document ).ready(function() {
     $(document).on('click', ".scheduleReport", function(event){
         event.preventDefault();
         $("#hiddenBuyReportOption").val("false");
-        $("#submitButton").text("Pay $0.25");
+        $("#submitButton").text("Pay $2.50");
         $("#paymentForm").show();
         $('html,body').animate({ scrollTop: $("#paymentForm").offset().top - 50}, 'slow');
     });
@@ -38,7 +38,7 @@ $( document ).ready(function() {
                 }
                 else
                 {
-                    $("#reportDisplayDiv").append("<div class=\"col-md-4\"><div class=\"products_box\"><h4>Schedule Inspection</h4><p class=\"products_price\">0.25</p><ul class=\"products_list\"><li>Schedule within 48 Hours</li><li>Licensed Professional</li><li>Refund $50 for Every Additional Buyer</li></ul><div><a href=\"" + $("#searchBar").val() + "\" class=\"btn_type1 scheduleReport\"><span>Schedule Now</span></a></div></div></div>");
+                    $("#reportDisplayDiv").append("<div class=\"col-md-4\"><div class=\"products_box\"><h4>Schedule Inspection</h4><p class=\"products_price\">2.50</p><ul class=\"products_list\"><li>Schedule within 48 Hours</li><li>Licensed Professional</li><li>Refund $50 for Every Additional Buyer</li></ul><div><a href=\"" + $("#searchBar").val() + "\" class=\"btn_type1 scheduleReport\"><span>Schedule Now</span></a></div></div></div>");
                 }
                 $('html,body').animate({ scrollTop: $("#reportDisplayDiv").offset().top - 100}, 'slow');
             }
