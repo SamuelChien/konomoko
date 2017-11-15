@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Report = require('../models/report');
+const Money = require('js-money');
 
 var isAuthenticated = function (req, res, next) {
   if (req.isAuthenticated())
@@ -31,11 +32,20 @@ module.exports = function(passport){
     .sort({ timestamp: -1 }).
     exec(function (err, reports) {
       if (err) console.log(err);
+      let totalSales = 0; reports.reduce((r1, r2) => r1.number_of_sales + r2.number_of_sales, 0);
+      let totalRevenue = new Money(0, Money.USD);
+      reports.forEach (report => {
+        totalSales += report.number_of_sales;
+        totalRevenue = totalRevenue.add(new Money(report.revenue, Money.USD));
+      });
+
       res.render('dashboard/dashboard',
         { title: 'Dashboard',
           reports: reports,
           name: req.user.name,
-          email: req.user.userame
+          email: req.user.userame,
+          totalSales: totalSales,
+          totalRevenue: (totalRevenue.amount/100).toFixed(2)
         });
     });
   });
