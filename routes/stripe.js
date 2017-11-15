@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 //Test: sk_test_rGmApxU2IwX1QI1KkkRZBtV5   Live: sk_live_cAEIaEXB48tk5Hz7DpAQus11
-const stripe = require("stripe")("sk_test_rGmApxU2IwX1QI1KkkRZBtV5");
+const stripe = require("stripe")("sk_live_cAEIaEXB48tk5Hz7DpAQus11");
 const emailHelper = require('../lib/email')
 const Report = require('../models/report');
 const Schedule = require('../models/schedule');
@@ -19,7 +19,7 @@ router.get('/scheduleCharge', function(req, res, next) {
     const tokenId = req.query.token_id;
     const phoneNum = req.query.phone;
 
-    let amount = 25000;
+    let amount = 25;
 
     // Charge the user's card:
     stripe.charges.create({
@@ -53,7 +53,7 @@ router.get('/charge', function(req, res, next) {
     var tokenId = req.query.token_id;
     var phoneNum = req.query.phone;
     var reportId = req.query.report_id;
-    let amount = 9900;
+    let amount = 99;
 
     // Charge the user's card:
     stripe.charges.create({
