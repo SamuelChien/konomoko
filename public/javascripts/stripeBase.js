@@ -79,8 +79,6 @@ function registerElements(elements, exampleName) {
     // from the Element group in order to create a token. We can also pass
     // in the additional customer data we collected in our form.
     stripe.createToken(elements[0], additionalData).then(function(result) {
-      // Stop loading!
-      example.classList.remove('submitting');
 
       if (result.token) {
           if(buyReportOption == "true")
@@ -88,6 +86,8 @@ function registerElements(elements, exampleName) {
               var request = $.get( "/stripe/charge", { token_id: result.token.id, report_id: reportId, email: email, phone:phone});
 
               request.success(function( data ) {
+                  // Stop loading!
+                  example.classList.remove('submitting');
                   $("#successMessage").text(data);
                   example.classList.add('submitted');
               });
@@ -101,6 +101,8 @@ function registerElements(elements, exampleName) {
               var request = $.get( "/stripe/scheduleCharge", { token_id: result.token.id, searchPhrase: searchTerm, email: email, phone:phone});
 
               request.success(function( data ) {
+                  // Stop loading!
+                  example.classList.remove('submitting');
                   $("#successMessage").text(data);
                   example.classList.add('submitted');
               });
