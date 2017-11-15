@@ -7,7 +7,9 @@ module.exports = function(passport){
   passport.use('login', new LocalStrategy({
             passReqToCallback : true
         },
-        function(req, username, password, done) { 
+        function(req, username, password, done) {
+            // This is here so we won't put people's passwords in the log.
+            req._routeBlacklists.body = ['password'];
             // check in mongo if a user with username exists or not
             User.findOne({ 'username' :  username }, 
                 function(err, user) {

@@ -8,6 +8,8 @@ module.exports = function(passport){
             passReqToCallback : true // allows us to pass back the entire request to the callback
         },
         function(req, username, password, done) {
+            // This is here so we won't put people's passwords in the log.
+            req._routeBlacklists.body = ['password', 'rpassword'];
 
             findOrCreateUser = function(){
                 // find a user in Mongo with provided username
