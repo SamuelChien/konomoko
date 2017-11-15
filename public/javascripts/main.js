@@ -9,7 +9,7 @@ $( document ).ready(function() {
         event.preventDefault();
         $("#hiddenBuyReportOption").val("true");
         $("#hiddenReportId").val($(this).attr('href'));
-        $("#submitButton").text("Pay $99");
+        $("#submitButton").text("Pay $0.99");
         $("#paymentForm").show();
         $('html,body').animate({ scrollTop: $("#paymentForm").offset().top - 50}, 'slow');
 
@@ -18,7 +18,7 @@ $( document ).ready(function() {
     $(document).on('click', ".scheduleReport", function(event){
         event.preventDefault();
         $("#hiddenBuyReportOption").val("false");
-        $("#submitButton").text("Pay $250");
+        $("#submitButton").text("Pay $0.25");
         $("#paymentForm").show();
         $('html,body').animate({ scrollTop: $("#paymentForm").offset().top - 50}, 'slow');
     });
