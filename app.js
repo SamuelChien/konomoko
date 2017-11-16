@@ -3,9 +3,10 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const Config = require('./config'), config = new Config();
 mongoose.Promise = global.Promise;
 // Initialize connection once (localhost "mongodb://localhost:27017/konomoko")
-mongoose.connect('mongodb://konomoko:BRuFfI4XaJ6Y5vIwaMbLiMe2CSAoZCHTa0ktQWspQ9uoxkFInOcHsL3ak9sIeirMHW6hcWJ80OcVBMgCaN0yGQ==@konomoko.documents.azure.com:10255/konomoko?ssl=true', { useMongoClient: true,});
+mongoose.connect(config.mongodbKey, { useMongoClient: true,});
 
 // Configuring Passport
 const flash = require('connect-flash');
@@ -18,6 +19,7 @@ const upload = require('./routes/upload');
 const profile = require('./routes/profile');
 const winston = require('winston');
 const expressWinston = require('express-winston');
+
 // Log session and request/response body
 expressWinston.requestWhitelist.push('session', 'body');
 expressWinston.responseWhitelist.push('body');
@@ -30,6 +32,19 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
+// set a cookie for store the stripe client side id
+app.use(function (req, res, next) {
+  // check if client sent cookie
+  var cookie = req.cookies.cookieName;
+  if (cookie === undefined)
+  {
+    res.cookie('stripeClientKey', config.stripeClientKey);
+  } 
+  next(); // <-- important!
+});
+
+
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 // express-winston logger makes sense BEFORE the router.

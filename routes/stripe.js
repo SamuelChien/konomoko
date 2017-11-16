@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const Config = require('../config'), serverConfig = new Config();
 //Test: sk_test_rGmApxU2IwX1QI1KkkRZBtV5   Live: sk_live_cAEIaEXB48tk5Hz7DpAQus11 (also change client key in stripeBase.js)
-const stripe = require("stripe")("sk_test_rGmApxU2IwX1QI1KkkRZBtV5");
+const stripe = require("stripe")(serverConfig.stripeServerKey);
 const emailHelper = require('../lib/email')
 const Report = require('../models/report');
 const Schedule = require('../models/schedule');
@@ -31,7 +32,6 @@ router.get('/scheduleCharge', function(req, res, next) {
     }, function(err, charge) {
         if(err)
         {
-            console.log(err);
             return res(err);
         }
         else

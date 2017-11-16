@@ -1,6 +1,9 @@
 'use strict';
 // live: pk_live_lpH0j5q53cvx2A2xTIyEfQIO   test: pk_test_Qy30tfLZhKSn4pEFoIo3zeIj
-var stripe = Stripe('pk_test_Qy30tfLZhKSn4pEFoIo3zeIj');
+// var config = require('clientconfig');
+console.log(document.cookie.config)
+const stripeClientKey = $.cookie("stripeClientKey");
+var stripe = Stripe(stripeClientKey);
 
 function registerElements(elements, exampleName) {
   var formClass = '.' + exampleName;

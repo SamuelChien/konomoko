@@ -3,14 +3,15 @@ const router = express.Router();
 const emailHelper = require('../lib/email')
 const Report = require('../models/report');
 // Handles multi-part media
+const Config = require('../config'), serverConfig = new Config();
 const path = require('path');
 const multer = require('multer')
 const MulterAzureStorage = require('multer-azure-storage')
 const upload = multer({
       storage: new MulterAzureStorage({
-        azureStorageConnectionString: 'https://konomoko.blob.core.windows.net/',
-        azureStorageAccessKey: 'FA2LvUQTv8rTX+U7CpOd5HwZ4L36BamKuPefVokiB/9YD4eAjODHmXeP0BWoilAPW6mulyM8oEG3E+7i5exezQ==',
-        azureStorageAccount: 'konomoko',
+        azureStorageConnectionString: serverConfig.azureStorageConnectionString,
+        azureStorageAccessKey: serverConfig.azureStorageAccessKey,
+        azureStorageAccount: serverConfig.azureStorageAccount,
         containerName: 'reports',
         containerSecurity: 'blob',
         fileName: function(req, file, cb) {
