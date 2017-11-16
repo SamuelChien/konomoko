@@ -3,6 +3,10 @@ $( document ).ready(function() {
         window.location.href = "/";
     });
 
+    $("#scheduleButton").click(function(){
+        window.location.href = "/";
+    });
+
     $("#loginNavBtn").click(function(){
         window.location.href = "/dashboard";
     });

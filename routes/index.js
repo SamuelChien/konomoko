@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Report = require('../models/report');
 const Transaction = require('../models/transaction');
+const Schedule = require('../models/schedule');
 const Money = require('js-money');
 
 var isAuthenticated = function (req, res, next) {
@@ -52,14 +53,21 @@ module.exports = function(passport){
                 Report
                     .find({'report_id':{ $in: Array.from(report_id_set) }})
                     .exec(function(err, boughtReports){
-                        res.render('dashboard/dashboard',
-                            { title: 'Dashboard',
-                                reports: reports,
-                                boughtReports: boughtReports,
-                                name: req.user.name,
-                                email: req.user.userame,
-                                totalSales: totalSales,
-                                totalRevenue: (totalRevenue.amount/100).toFixed(2)
+
+                        Schedule
+                            .find()
+                            .where('buyer_email').equals(req.user.username)
+                            .exec(function (err, scheduleEntries) {
+                                res.render('dashboard/dashboard',
+                                    { title: 'Dashboard',
+                                        reports: reports,
+                                        boughtReports: boughtReports,
+                                        scheduleEntries: scheduleEntries,
+                                        name: req.user.name,
+                                        email: req.user.userame,
+                                        totalSales: totalSales,
+                                        totalRevenue: (totalRevenue.amount/100).toFixed(2)
+                                    });
                             });
                     });
             });
