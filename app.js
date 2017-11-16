@@ -37,12 +37,12 @@ app.use(expressWinston.logger({
   transports: [
     new winston.transports.Console({
       json: true,
-      colorize: true
+      colorize: process.stdout.isTTY, // color it if it's terminal
     }),
     new winston.transports.File({
       filename:'combined.log',
       json: false,
-      colorize: true,
+      colorize: process.stdout.isTTY, // color it if it's terminal
       prettyPrint: true,
       timestamp: true,
       maxsize: 40000,
@@ -76,12 +76,12 @@ app.use(expressWinston.errorLogger({
   transports: [
     new winston.transports.Console({
       json: true,
-      colorize: true
+      colorize: process.stdout.isTTY // color it if it's terminal
     }),
     new winston.transports.File({
       filename: 'error.log',
       json: false,
-      colorize: true,
+      colorize: process.stdout.isTTY, // color it if it's terminal
       prettyPrint: true,
       timestamp: true,
       maxsize: 40000,
