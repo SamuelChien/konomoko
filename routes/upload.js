@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const emailHelper = require('../lib/email')
 const Report = require('../models/report');
 // Handles multi-part media
 const path = require('path');
@@ -39,6 +40,8 @@ router.post('/', upload, function(req, res) {
       storage_location: req.file.url
     });
     report.save();
+
+    emailHelper.emailAdminForReportUploaded(req.body.mls, req.user.username, req.file.url);
     res.redirect('dashboard');
 });
 

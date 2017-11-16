@@ -94,6 +94,7 @@ router.get('/charge', function(req, res, next) {
                 report.save(function (err, updatedReport) {
                     if (err) return res(err);
                     // Sending the report to buyer.
+                    emailHelper.emailUploaderReportPurchased(report.uploader_id, report.mls);
                     emailHelper.emailCustomerReports(email, report.storage_location);
                     return res.send('Thank you for choosing MangoInspect. Report has been sent to your email. Enjoy!');
                 });
