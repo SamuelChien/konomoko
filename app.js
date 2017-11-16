@@ -1,4 +1,5 @@
 const express = require('express');
+const nodalytics = require('nodalytics');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
@@ -72,6 +73,10 @@ app.use(expressWinston.logger({
         saveUninitialized: true,
         resave: true
 }));
+
+//Google Analytics
+app.use(nodalytics('UA-109748704-1'));
+
 // Passport init
 app.use(passport.initialize());
 app.use(passport.session());
