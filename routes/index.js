@@ -31,7 +31,7 @@ module.exports = function(passport){
     Report
     .find()
     .where('uploader_id').equals(req.user.username)
-    .sort({ timestamp: -1 }).
+    .sort({ createdAt: -1 }).
     exec(function (err, reports) {
       if (err) console.log(err);
       let totalSales = 0; reports.reduce((r1, r2) => r1.number_of_sales + r2.number_of_sales, 0);

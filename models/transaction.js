@@ -18,7 +18,7 @@ const TransactionSchema = mongoose.Schema({
     time : {
         type: Date,
         default: Date.now
-    }
-});
+    }},
+    { timestamps: true });
 
 const Transaction = module.exports = mongoose.model('Transaction', TransactionSchema);

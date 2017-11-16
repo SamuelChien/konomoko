@@ -18,7 +18,7 @@ const ScheduleSchema = mongoose.Schema({
     time : {
         type: Date,
         default: Date.now
-    }
-});
+    }},
+    { timestamps: true });
 
 const Schedule = module.exports = mongoose.model('Schedule', ScheduleSchema);
