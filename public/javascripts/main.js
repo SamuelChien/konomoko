@@ -7,6 +7,10 @@ $( document ).ready(function() {
         window.location.href = "/dashboard";
     });
 
+    $(".feedbackNavBtn").click(function(){
+        window.location.href = "/feedback";
+    });
+
     $("#paymentForm").hide();
 
     $(document).on('click', ".buyReport", function(event){

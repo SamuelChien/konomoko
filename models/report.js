@@ -25,12 +25,8 @@ const ReportSchema = mongoose.Schema({
     revenue: {
         type: Number, // Money is stored in integer. Eg. $10.99 is stored as 1099
         default: 0
-    },
-    timestamp : {
-        type: Date, 
-        default: Date.now 
-    }
-});
+    }},
+    { timestamps: true });
 
 const Report = module.exports = mongoose.model('Report', ReportSchema);
 

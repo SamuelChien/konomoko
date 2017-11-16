@@ -19,9 +19,8 @@ var UserSchema = mongoose.Schema({
     isVerified:{
         type: Boolean,
         default: false
-    }
-
-});
+    }},
+    { timestamps: true });
 
 var User = module.exports = mongoose.model('User', UserSchema);
 
