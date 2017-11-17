@@ -15,10 +15,10 @@ const session = require('express-session');
 const passport = require('passport');
 const index = require('./routes/index')(passport);
 const reports = require('./routes/reports');
-const stripe = require('./routes/stripe');
-const upload = require('./routes/upload');
-const profile = require('./routes/profile');
-const feedback = require('./routes/feedback');
+// const stripe = require('./routes/stripe');
+// const upload = require('./routes/upload');
+// const profile = require('./routes/profile');
+// const feedback = require('./routes/feedback');
 //const winston = require('winston');
 // const expressWinston = require('express-winston');
 //
@@ -134,5 +134,5 @@ const app = express();
 //module.exports = app;
 
 
-app.get('/', (req, res) => res.send('Hello World4!'));
+app.get('/', (req, res) => res.send('Hello World5!'));
 module.exports = app;
