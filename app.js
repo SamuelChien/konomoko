@@ -9,25 +9,25 @@ mongoose.Promise = global.Promise;
 // Initialize connection once (localhost "mongodb://localhost:27017/konomoko")
 mongoose.connect(config.mongodbKey, { useMongoClient: true,});
 
-// // Configuring Passport
-// const flash = require('connect-flash');
-// const session = require('express-session');
-// const passport = require('passport');
-// const index = require('./routes/index')(passport);
-// const reports = require('./routes/reports');
-// const stripe = require('./routes/stripe');
-// const upload = require('./routes/upload');
-// const profile = require('./routes/profile');
-// const feedback = require('./routes/feedback');
-// const winston = require('winston');
-// const expressWinston = require('express-winston');
-//
-// // Log session and request/response body
-// expressWinston.requestWhitelist.push('session', 'body');
-// expressWinston.responseWhitelist.push('body');
-//
-//const app = express();
-//
+// Configuring Passport
+const flash = require('connect-flash');
+const session = require('express-session');
+const passport = require('passport');
+const index = require('./routes/index')(passport);
+const reports = require('./routes/reports');
+const stripe = require('./routes/stripe');
+const upload = require('./routes/upload');
+const profile = require('./routes/profile');
+const feedback = require('./routes/feedback');
+const winston = require('winston');
+const expressWinston = require('express-winston');
+
+// Log session and request/response body
+expressWinston.requestWhitelist.push('session', 'body');
+expressWinston.responseWhitelist.push('body');
+
+const app = express();
+
 // // view engine setup
 // app.set('views', path.join(__dirname, 'views'));
 // app.set('view engine', 'ejs');
@@ -134,7 +134,5 @@ mongoose.connect(config.mongodbKey, { useMongoClient: true,});
 //module.exports = app;
 
 
-const app = express();
-
-app.get('/', (req, res) => res.send('Hello World1!'));
+app.get('/', (req, res) => res.send('Hello World2!'));
 module.exports = app;
