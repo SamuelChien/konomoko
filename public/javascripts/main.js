@@ -46,7 +46,7 @@ $( document ).ready(function() {
                 if(data.length != 0)
                 {
                     data.forEach(function(report) {
-                        $("#reportDisplayDiv").append("<div class=\"col-md-4\"><div class=\"products_box\"><h4>Report</h4><p class=\"products_price\">99</p><ul class=\"products_list\"><li>Address: "  + report.address + "</li><li>MLS: " + report.mls + "</li><li>Rating: 4.3 (3 download)</li></ul><div><a href=\"" + report.report_id + "\" class=\"btn_type1 buyReport\"><span>Order Now</span></a></div></div></div>");
+                        $("#reportDisplayDiv").append("<div class=\"col-md-4\"><div class=\"products_box\"><h4>Report</h4><p class=\"products_price\">99</p><ul class=\"products_list\"><li>Address: "  + report.address + "</li><li>MLS: " + report.mls + "</li></ul><div><a href=\"" + report.report_id + "\" class=\"btn_type1 buyReport\"><span>Order Now</span></a></div></div></div>");
                     });
                 }
                 else
