@@ -10,8 +10,8 @@ mongoose.Promise = global.Promise;
 mongoose.connect(config.mongodbKey, { useMongoClient: true,});
 
 // Configuring Passport
-const flash = require('connect-flash');
-const session = require('express-session');
+// const flash = require('connect-flash');
+// const session = require('express-session');
 // const passport = require('passport');
 // const index = require('./routes/index')(passport);
 // const reports = require('./routes/reports');
