@@ -11,7 +11,7 @@ mongoose.connect(config.mongodbKey, { useMongoClient: true,});
 
 //Configuring Passport
 const flash = require('connect-flash');
-const session = require('express-session');
+const cookieSession = require('cookie-session');
 const passport = require('passport');
 const index = require('./routes/index')(passport);
 const reports = require('./routes/reports');
@@ -68,11 +68,12 @@ app.use(expressWinston.logger({
   ]
 }));
 
-// Express Session
-    app.use(session({
-            secret: 'secret',
-        saveUninitialized: true,
-        resave: true
+app.use(cookieSession({
+    name: 'session',
+    keys: ['secret'],
+
+    // Cookie Options
+    maxAge: 24 * 60 * 60 * 1000 // 24 hours
 }));
 
 //Google Analytics
