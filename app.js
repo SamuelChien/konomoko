@@ -1,14 +1,14 @@
-//const express = require('express');
-// const nodalytics = require('nodalytics');
-// const path = require('path');
-// const cookieParser = require('cookie-parser');
-// const bodyParser = require('body-parser');
-// const mongoose = require('mongoose');
-// const Config = require('./config'), config = new Config();
-// mongoose.Promise = global.Promise;
-// // Initialize connection once (localhost "mongodb://localhost:27017/konomoko")
-// mongoose.connect(config.mongodbKey, { useMongoClient: true,});
-//
+const express = require('express');
+const nodalytics = require('nodalytics');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const Config = require('./config'), config = new Config();
+mongoose.Promise = global.Promise;
+// Initialize connection once (localhost "mongodb://localhost:27017/konomoko")
+mongoose.connect(config.mongodbKey, { useMongoClient: true,});
+
 // // Configuring Passport
 // const flash = require('connect-flash');
 // const session = require('express-session');
@@ -133,8 +133,8 @@
 
 //module.exports = app;
 
-const express = require('express');
+
 const app = express();
 
-app.get('/', (req, res) => res.send('Hello World!'));
+app.get('/', (req, res) => res.send('Hello World1!'));
 module.exports = app;
