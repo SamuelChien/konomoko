@@ -3,11 +3,11 @@ const nodalytics = require('nodalytics');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-const Config = require('./config'), config = new Config();
-mongoose.Promise = global.Promise;
-// Initialize connection once (localhost "mongodb://localhost:27017/konomoko")
-mongoose.connect(config.mongodbKey, { useMongoClient: true,});
+// const mongoose = require('mongoose');
+// const Config = require('./config'), config = new Config();
+// mongoose.Promise = global.Promise;
+// // Initialize connection once (localhost "mongodb://localhost:27017/konomoko")
+// mongoose.connect(config.mongodbKey, { useMongoClient: true,});
 
 // Configuring Passport
 // const flash = require('connect-flash');
