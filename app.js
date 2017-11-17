@@ -9,7 +9,7 @@ mongoose.Promise = global.Promise;
 // Initialize connection once (localhost "mongodb://localhost:27017/konomoko")
 mongoose.connect(config.mongodbKey, { useMongoClient: true,});
 
-Configuring Passport
+//Configuring Passport
 const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
