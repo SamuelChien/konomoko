@@ -19,12 +19,12 @@ const stripe = require('./routes/stripe');
 const upload = require('./routes/upload');
 const profile = require('./routes/profile');
 const feedback = require('./routes/feedback');
-const winston = require('winston');
-const expressWinston = require('express-winston');
-
-// Log session and request/response body
-expressWinston.requestWhitelist.push('session', 'body');
-expressWinston.responseWhitelist.push('body');
+//const winston = require('winston');
+// const expressWinston = require('express-winston');
+//
+// // Log session and request/response body
+// expressWinston.requestWhitelist.push('session', 'body');
+// expressWinston.responseWhitelist.push('body');
 
 const app = express();
 
@@ -134,5 +134,5 @@ const app = express();
 //module.exports = app;
 
 
-app.get('/', (req, res) => res.send('Hello World2!'));
+app.get('/', (req, res) => res.send('Hello World4!'));
 module.exports = app;
