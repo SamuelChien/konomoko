@@ -12,9 +12,9 @@ mongoose.connect(config.mongodbKey, { useMongoClient: true,});
 // Configuring Passport
 const flash = require('connect-flash');
 const session = require('express-session');
-const passport = require('passport');
-const index = require('./routes/index')(passport);
-const reports = require('./routes/reports');
+// const passport = require('passport');
+// const index = require('./routes/index')(passport);
+// const reports = require('./routes/reports');
 // const stripe = require('./routes/stripe');
 // const upload = require('./routes/upload');
 // const profile = require('./routes/profile');
@@ -134,5 +134,5 @@ const app = express();
 //module.exports = app;
 
 
-app.get('/', (req, res) => res.send('Hello World5!'));
+app.get('/', (req, res) => res.send('Hello World6!'));
 module.exports = app;
