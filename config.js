@@ -2,7 +2,7 @@ module.exports = function(){
     switch(process.env.NODE_ENV){
         case 'development':
             return {
-              mongodbKey: 'mongodb://mangoinspectdevo:WH4DaEoMoLvnTNPr0v9tmBhDSI0pNrBTWT4asMGnOAhIHGwDzEpXCjJzlcXzh5pe0Avj1jeqwxpkifFT89HuCQ==@mangoinspectdevo.documents.azure.com:10255/mongoinspectdevo?ssl=true',
+              mongodbKey: 'mongodb://mangoinspect:la4RJO4EijENzfnjMQ4OKr2sTpqLTmzTFtys1cZq0XAfX6pfySroUY95Fnhf4YyT5UhQXwdD3qkYUtpNZQAxNA==@mangoinspect.documents.azure.com:10255/mongoinspectProd?ssl=true',
               azureStorageConnectionString: 'https://mangoinspectdevo.blob.core.windows.net/',
               azureStorageAccessKey: 'd/5TeLiqQ2klh4ngl8F9uJRtJCNGhIYALiVc7pbVeBANM9L8j+HuW23vUhiTuBENgd95siZd1z8RpGlkZS+xAA==',
               azureStorageAccount: 'mangoinspectdevo',
@@ -12,7 +12,7 @@ module.exports = function(){
 
         case 'production':
             return {
-              mongodbKey: 'mongodb://mangoinspectprod:iyg6umpzUh0figLW4apCqZJfVbD0jC22Crsgx5IGATpPEDzBA6QguA9u168IP9PTQGdkN9UOvlbUZkvDRNBdiA==@mangoinspectprod.documents.azure.com:10255/mongoinspectprod?ssl=true',
+              mongodbKey: 'mongodb://mangoinspect:la4RJO4EijENzfnjMQ4OKr2sTpqLTmzTFtys1cZq0XAfX6pfySroUY95Fnhf4YyT5UhQXwdD3qkYUtpNZQAxNA==@mangoinspect.documents.azure.com:10255/mongoinspectProd?ssl=true',
               azureStorageConnectionString: 'https://mangoinspectprod.blob.core.windows.net/',
               azureStorageAccessKey: 'F0ovfgq+ivWzO4cAqCXmB7wRZiJAA8BCIx8Chq4T/VEvPrLentx1dosr9KDmQWMUuUhodDw98EM3xpmZRZVE3g==',
               azureStorageAccount: 'mangoinspectprod',
