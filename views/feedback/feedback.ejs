@@ -4,10 +4,11 @@
   <body>
     <div class="vertical-center">
       <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-3"></div>
-          <div class="col-md-6 col-md-offset-3">
-            <h3>How Can We Do Better for You?</h3>
+        <div class="row contact-method">
+          <div class="col-md-3">
+          </div>
+          <div class="col-md-6 col-md-offset-3" id="message-block">
+            <h3>What Can We Do for You?</h3>
             <form action='/feedback' method='post'>
               <div class="form-group">
                 <label for="feedbackEmail">Email address</label>
@@ -15,15 +16,34 @@
                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
               </div>
               <div class="form-group">
-                <label for="feedbackText">Your Feedback</label>
+                <label for="feedbackText">We want to hear what you think</label>
                 <textarea class="form-control" id="feedbackText" name="feedbackText" rows="12"></textarea>
               </div>
               <button type="submit" class="btn btn-primary">Submit</button>
             </form>
           </div>
+<!--           <div class="col-md-6">
+            <h3>Call Us</h3>
+            <h6>Samuel</h6>
+            <span>206-972-2280</span>
+            <h6>Johnny</h6>
+            <span>206-747-3564</span>
+          </div> -->
+        </div>
+        <div class="row contact-method">
+          <div class="col-md-3"></div>
+          <div class="col-md-6 col-md-offset-3">
+            <h3>Call Us</h3>
+              <h6>Samuel</h5>
+              <span>206-972-2280</span>
+              <h6>Johnny</h5>
+              <span>206-747-3564</span>
+          </div>
         </div>
       </div>
     </div>
+
+
     <% include _baseScript %>
   </body>
   <!-- end::Body -->

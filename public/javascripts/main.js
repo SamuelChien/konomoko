@@ -84,4 +84,10 @@ $( document ).ready(function() {
         //     }
         // });
     });
+
+    $("#report-on-the-go-button").click(function() {
+    $('html,body').animate({
+        scrollTop: $("#section1").offset().top},
+        'slow');
+    });
 });
