@@ -7,3 +7,8 @@
 /*#message-block {
   border-right: 1px solid;
 }*/
+
+.contact-phone {
+  margin-left: 5%;
+  /*display: block;*/
+}
