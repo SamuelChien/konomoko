@@ -20,6 +20,12 @@ const profile = require('./routes/profile');
 const feedback = require('./routes/feedback');
 const winston = require('winston');
 const expressWinston = require('express-winston');
+const fs = require( 'fs' );
+const logsDirectory = 'logs';
+if ( !fs.existsSync( logsDirectory ) ) {
+    // Create the directory if it does not exist
+    fs.mkdirSync( logsDirectory );
+}
 
 // Log session and request/response body
 expressWinston.requestWhitelist.push('session', 'body');
@@ -58,10 +64,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 // express-winston logger makes sense BEFORE the router.
 app.use(expressWinston.logger({
   transports: [
-    new winston.transports.Console({
-      json: true,
-      colorize: process.stdout.isTTY, // color it if it's terminal
-    }),
+    // Uncomment this to log things in the console.
+    // new winston.transports.Console({
+    //   json: true,
+    //   colorize: process.stdout.isTTY, // color it if it's terminal
+    // }),
     new winston.transports.File({
       filename:'logs/combined.log',
       json: false,
@@ -95,10 +102,11 @@ app.use('/feedback', feedback);
 // express-winston errorLogger makes sense AFTER the router.
 app.use(expressWinston.errorLogger({
   transports: [
-    new winston.transports.Console({
-      json: true,
-      colorize: process.stdout.isTTY // color it if it's terminal
-    }),
+    // Uncomment this to log things in the console.
+    // new winston.transports.Console({
+    //   json: true,
+    //   colorize: process.stdout.isTTY // color it if it's terminal
+    // }),
     new winston.transports.File({
       filename: 'logs/error.log',
       json: false,
