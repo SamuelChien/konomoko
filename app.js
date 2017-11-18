@@ -3,15 +3,14 @@ const nodalytics = require('nodalytics');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const session = require('cookie-session');
 const mongoose = require('mongoose');
 const Config = require('./config'), config = new Config();
 mongoose.Promise = global.Promise;
-// Initialize connection once (localhost "mongodb://localhost:27017/konomoko")
 mongoose.connect(config.mongodbKey, { useMongoClient: true,});
 
 //Configuring Passport
 const flash = require('connect-flash');
-const cookieSession = require('cookie-session');
 const passport = require('passport');
 const index = require('./routes/index')(passport);
 const reports = require('./routes/reports');
@@ -34,6 +33,13 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
+
+//set up session
+app.use(session({
+    name: 'session',
+    keys: ['key1', 'key2']
+}))
+
 // set a cookie for store the stripe client side id
 app.use(function (req, res, next) {
   // check if client sent cookie
@@ -57,7 +63,7 @@ app.use(expressWinston.logger({
       colorize: process.stdout.isTTY, // color it if it's terminal
     }),
     new winston.transports.File({
-      filename:'combined.log',
+      filename:'logs/combined.log',
       json: false,
       colorize: process.stdout.isTTY, // color it if it's terminal
       prettyPrint: true,
@@ -66,14 +72,6 @@ app.use(expressWinston.logger({
       maxFiles: 10
     })
   ]
-}));
-
-app.use(cookieSession({
-    name: 'session',
-    keys: ['secret'],
-
-    // Cookie Options
-    maxAge: 24 * 60 * 60 * 1000 // 24 hours
 }));
 
 //Google Analytics
@@ -102,7 +100,7 @@ app.use(expressWinston.errorLogger({
       colorize: process.stdout.isTTY // color it if it's terminal
     }),
     new winston.transports.File({
-      filename: 'error.log',
+      filename: 'logs/error.log',
       json: false,
       colorize: process.stdout.isTTY, // color it if it's terminal
       prettyPrint: true,
