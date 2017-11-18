@@ -75,8 +75,8 @@ app.use(expressWinston.logger({
       colorize: process.stdout.isTTY, // color it if it's terminal
       prettyPrint: true,
       timestamp: true,
-      maxsize: 40000,
-      maxFiles: 10
+      maxsize: 4000000, // 4MB
+      maxFiles: 2
     })
   ]
 }));
@@ -114,8 +114,8 @@ app.use(expressWinston.errorLogger({
       colorize: process.stdout.isTTY, // color it if it's terminal
       prettyPrint: true,
       timestamp: true,
-      maxsize: 40000,
-      maxFiles: 10
+      maxsize: 4000000, // 4MB
+      maxFiles: 2
     })
   ]
 }));
