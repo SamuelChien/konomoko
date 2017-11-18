@@ -5,6 +5,7 @@ const Report = require('../models/report');
 // Handles multi-part media
 const Config = require('../config'), serverConfig = new Config();
 const path = require('path');
+const LoginHelper = require('./loginHelper');
 const multer = require('multer')
 const MulterAzureStorage = require('multer-azure-storage')
 const upload = multer({
@@ -27,9 +28,8 @@ const upload = multer({
       limits: { fileSize: 500000000 } // 50MB
     }).single('report');
 
-
 /* POST to upload report to Storage. */
-router.post('/', upload, function(req, res) {
+router.post('/', LoginHelper.isAuthenticated, upload, function(req, res) {
     if(!req.file) {
       res.send("Only PDF under 5MB can be uploaded.");
     }

@@ -4,13 +4,7 @@ const Report = require('../models/report');
 const Transaction = require('../models/transaction');
 const Schedule = require('../models/schedule');
 const Money = require('js-money');
-
-var isAuthenticated = function (req, res, next) {
-  if (req.isAuthenticated())
-    return next();
-  // if the user is not authenticated then redirect him to the login page
-  res.redirect('/login');
-}
+const LoginHelper = require('./loginHelper');
 
 module.exports = function(passport){
 
@@ -28,7 +22,7 @@ module.exports = function(passport){
 
 
   /* Return Dashboard if user is logged in */
-  router.get('/dashboard', isAuthenticated, function(req, res){
+  router.get('/dashboard', LoginHelper.isAuthenticated, function(req, res){
     Report
     .find()
     .where('uploader_id').equals(req.user.username)
