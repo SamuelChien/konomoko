@@ -18,6 +18,9 @@ const ReportSchema = mongoose.Schema({
     storage_location: {
         type: String
     },
+    preview_location: {
+        type: String
+    },
     number_of_sales: {
         type: Number,
         default: 0

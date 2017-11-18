@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const emailHelper = require('../lib/email')
+const emailHelper = require('../lib/email');
+const pdfHelper = require('../lib/pdf');
 const Report = require('../models/report');
 // Handles multi-part media
 const Config = require('../config'), serverConfig = new Config();
@@ -15,7 +16,7 @@ const upload = multer({
         containerName: 'reports',
         containerSecurity: 'blob',
         fileName: function(req, file, cb) {
-          return Date.now() + "-CustomizedReportName";
+          return Date.now() + "-FullReport";
         },
       }),
       fileFilter:  function (req, file, cb) {
@@ -33,6 +34,7 @@ router.post('/', upload, function(req, res) {
     if(!req.file) {
       res.send("Only PDF under 5MB can be uploaded.");
     }
+
     const report = new Report({
       report_id: req.file.blob,
       mls: req.body.mls,
@@ -43,6 +45,8 @@ router.post('/', upload, function(req, res) {
     report.save();
 
     emailHelper.emailAdminForReportUploaded(req.body.mls, req.user.username, req.file.url);
+    pdfHelper.getPreviewUrl(req.file.url);
+
     res.redirect('dashboard');
 });
 
