@@ -4,7 +4,7 @@ module.exports = function(){
             return {
               mongodbKey: 'mongodb://mangoinspect:la4RJO4EijENzfnjMQ4OKr2sTpqLTmzTFtys1cZq0XAfX6pfySroUY95Fnhf4YyT5UhQXwdD3qkYUtpNZQAxNA==@mangoinspect.documents.azure.com:10255/mongoinspectProd?ssl=true',
               azureStorageConnectionString: 'https://mangoinspectdevo.blob.core.windows.net/',
-              azureStorageAccessKey: 'd/5TeLiqQ2klh4ngl8F9uJRtJCNGhIYALiVc7pbVeBANM9L8j+HuW23vUhiTuBENgd95siZd1z8RpGlkZS+xAA==',
+              azureStorageAccessKey: 'n6wvfVWuNUubC94RAh+Vp9bpAP4XesX66lhhwARwhI7XXs9dLRQrqAH9qutZdcRRpuN/8xb4KpsQA+dNhmy9nA==',
               azureStorageAccount: 'mangoinspectdevo',
               stripeServerKey: 'sk_test_rGmApxU2IwX1QI1KkkRZBtV5',
               stripeClientKey: 'pk_test_Qy30tfLZhKSn4pEFoIo3zeIj'
