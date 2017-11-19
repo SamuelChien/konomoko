@@ -1505,13 +1505,12 @@
   .logo{
     line-height: 17px;
     float: left;
-    padding-top: 14px;
+    width:100px;
   }
 
   .logo img{
     vertical-align: top;
   }
-
 
   /* --------------------------------------------
       6.1. Navigation
