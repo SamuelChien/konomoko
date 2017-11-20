@@ -43,7 +43,7 @@ router.get('/scheduleCharge', function(req, res, next) {
             });
             schedule.save();
 
-            emailHelper.emailAdminForSchedule(email, searchPhrase, phoneNum);
+            emailHelper.emailForSchedule(email, searchPhrase, phoneNum);
             return res.send('Thank you for choosing MangoInspect. We will schedule the inspection within 48 hours. Enjoy!');
         }
     });
@@ -93,8 +93,7 @@ router.get('/charge', function(req, res, next) {
                 report.save(function (err, updatedReport) {
                     if (err) return res(err);
                     // Sending the report to buyer.
-                    emailHelper.emailUploaderReportPurchased(report.uploader_id, report.mls);
-                    emailHelper.emailCustomerReports(email, report.storage_location);
+                    emailHelper.emailForPurchased(email, report.uploader_id, report.mls, report.storage_location);
                     return res.send('Thank you for choosing MangoInspect. Report has been sent to your email. Enjoy!');
                 });
             });

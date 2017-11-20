@@ -44,7 +44,7 @@ router.post('/', LoginHelper.isAuthenticated, upload, function(req, res) {
     });
     report.save();
 
-    emailHelper.emailAdminForReportUploaded(req.body.mls, req.user.username, req.file.url);
+    emailHelper.emailForUpload(req.user.username, req.body.mls, req.file.url);
     pdfHelper.getPreviewUrl(req.file.url);
 
     res.redirect('dashboard');
