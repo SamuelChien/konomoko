@@ -77,7 +77,8 @@ module.exports = function(passport){
 
   /* Handle Login GET */
   router.get('/login', function(req, res, next) {
-    res.render('auth/login', { title: 'Login' });
+    // console.log(req.flash('error'));
+    res.render('auth/login', { title: 'Login', errorMessage: req.flash('error')});
   });
 
   router.get('/logout', function (req, res, next) {

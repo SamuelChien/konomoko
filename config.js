@@ -21,6 +21,6 @@ module.exports = function(){
             };
 
         default:
-            throw new Error("Please set environment variable NODE_ENV to either development or production");
+            throw new Error("Please set environment variable NODE_ENV to either development or production. Eg. export NODE_ENV=development");
     }
 };

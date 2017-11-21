@@ -29,23 +29,39 @@ var SnippetLogin = function() {
           $("#m_login_signup_cancel").click(function(e) { e.preventDefault(), backToLoginForm() }) },
 
         loginSubmit = function() {
-            // $("#m_login_signin_submit").click(function(e) {
-            //     e.preventDefault();
-            //     var a = $(this),
-            //         t = $(this).closest("form");
-            //     t.validate({ rules: { email: { required: !0, email: !0 }, password: { required: !0 } } }),
-            //     t.valid() && (a.addClass("m-loader m-loader--right m-loader--light").attr("disabled", !0),
-            //       t.ajaxSubmit(
-            //         { url: "/login", success: function(e, r, n, l) {
-	           //            setTimeout(function() {
-	           //              a.removeClass("m-loader m-loader--right m-loader--light").attr("disabled", !1),
-	           //              i(t, "danger", "Incorrect username or password. Please try again.")
-	           //            }, 2e3)
-            //         	}
-            //         }
-            //       )
-            //     )
-            // })
+            $("#m_login_signin_submit").click(function(e) {
+                e.preventDefault();
+                var button = $(this), form = $(this).closest("form");
+                form.validate(
+                  { rules:
+                    { username: {
+                        required: !0
+                      },
+                      password: {
+                        required: !0
+                      }
+                    }
+                  }
+                ),
+                form.valid() &&
+                (button
+                  .addClass("m-loader m-loader--right m-loader--light")
+                  .attr("disabled", !0),
+                  form.ajaxSubmit(
+                    { url: "/login",
+                        success: function(responseHtml, statusText, xhr, form) {
+                          if($(responseHtml).filter("title").text().includes("MangoInspect - Login")) {
+                            button.removeClass("m-loader m-loader--right m-loader--light").attr("disabled", !1);
+                            alert(form, "danger", "Incorrect username or password. Please try again.");
+                          }
+                          else {
+                            window.location.href = 'dashboard';
+                          }
+                        }
+                    }
+                  )
+                )
+            })
         },
         signUpSubmit = function() {
             // $("#m_login_signup_submit").click(function(a) {
@@ -54,20 +70,18 @@ var SnippetLogin = function() {
             //         n = $(this).closest("form");
             //     n.validate(
             //       { rules: {
-            //           username: { required: !0 },
-            //           email: { required: !0, email: !0 },
+            //           username: { required: !0, email: !0 },
+            //           name: { required: !0 },
+            //           phone: { required: !0 },
             //           password: { required: !0 },
-            //           rpassword: { required: !0 },
-            //           agree: { required: !0 } } }), n.valid()
+            //           rpassword: { required: !0 } } }), n.valid()
             //           && (r.addClass("m-loader m-loader--right m-loader--light").attr("disabled", !0),
             //             n.ajaxSubmit({
             //               url: "/signup",
             //               success: function(a, l, s, o) {
-            //                   setTimeout(function() {
-            //                       r.removeClass("m-loader m-loader--right m-loader--light").attr("disabled", !1), n.clearForm(), n.validate().resetForm(), t();
-            //                       var a = e.find(".m-login__signin form");
-            //                       a.clearForm(), a.validate().resetForm(), i(a, "success", "Thank you. To complete your registration please check your email.")
-            //                   }, 2e3)
+            //                 r.removeClass("m-loader m-loader--right m-loader--light").attr("disabled", !1), n.clearForm(), n.validate().resetForm(), alert(a, "success", "Thank you. To complete your registration please check your email.");
+            //                 var a = e.find(".m-login__signin form");
+            //                 a.clearForm(), a.validate().resetForm(), alert(a, "success", "Thank you. To complete your registration please check your email.");
             //               }
             //     }))
             // })
@@ -81,7 +95,7 @@ var SnippetLogin = function() {
             //         url: "",
             //         success: function(a, l, s, o) {
             //             setTimeout(function() {
-            //                 r.removeClass("m-loader m-loader--right m-loader--light").attr("disabled", !1), n.clearForm(), n.validate().resetForm(), t();
+            //                 r.removeClass("m-loader m-loader--right m-loader--light").attr("disabled", !1), n.clearForm(), n.validate().resetForm(), showForgetPasswordForm;
             //                 var a = e.find(".m-login__signin form");
             //                 a.clearForm(), a.validate().resetForm(), i(a, "success", "Cool! Password recovery instruction has been sent to your email.")
             //             }, 2e3)

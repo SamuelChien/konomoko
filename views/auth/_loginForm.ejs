@@ -4,7 +4,7 @@
       Welcome Back!
     </h3>
   </div>
-  <form class="m-login__form m-form" action="/login" method="post">
+  <form id="login-form" class="m-login__form m-form" action="/login" method="post">
     <div class="form-group m-form__group">
       <input class="form-control m-input" type="text" placeholder="Email" name="username" autocomplete="off">
     </div>
@@ -29,3 +29,12 @@
     </div>
   </form>
 </div>
+<% if (errorMessage) { %>
+     <script>
+      // const alert = function(e, i, a) {
+      //   const t = $('<div class="m-alert m-alert--outline alert alert-' + i + ' alert-dismissible" role="alert">\t\t\t<button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>\t\t\t<span></span>\t\t</div>');
+      //   e.find(".alert").remove(), t.prependTo(e), t.animateClass("fadeIn animated"), t.find("span").html(a)
+      // }        
+      // alert($("#login-form"), "danger", "Incorrect username or password. Please try again.");   
+     </script>
+<% } %>
