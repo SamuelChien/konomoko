@@ -3,19 +3,17 @@ $( document ).ready(function() {
         window.location.href = "/";
     });
 
-    $("#scheduleButton").click(function(){
-        window.location.href = "/";
-    });
-
-    $("#loginNavBtn").click(function(){
+    $("#sellMyReportBtn").click(function(){
         window.location.href = "/dashboard";
     });
 
-    $(".feedbackNavBtn").click(function(){
+    $("#feedbackBtn").click(function(){
         window.location.href = "/feedback";
     });
 
     $("#paymentForm").hide();
+
+    $("#searchResult").hide();
 
     $(document).on('click', ".buyReport", function(event){
         event.preventDefault();
@@ -41,6 +39,7 @@ $( document ).ready(function() {
 
         if(event.keyCode == 13)
         {
+            $("#searchResult").show();
             $.get( "/reports/fuzzySearch", { searchTerm: $("#searchBar").val()}).done(function( data ) {
                 $("#reportDisplayDiv").html("<div id=\"reportDisplayDiv\" class=\"row\"></div>");
                 if(data.length != 0)

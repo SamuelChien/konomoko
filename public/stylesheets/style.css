@@ -49,6 +49,21 @@
 
 ------------------------------------------------ */
 
+#feedbackNavBtn{
+  margin:30px;
+}
+
+#mainLogo {
+    width: 200px;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 115%;
+    left: 47%;
+    margin-left: -60px;
+}
 
 .tooltip .tooltiptext {
     visibility: hidden;
@@ -60,7 +75,7 @@
     padding: 5px 0;
     position: absolute;
     z-index: 1;
-    bottom: 125%;
+    bottom: 95%;
     left: 50%;
     margin-left: -60px;
     opacity: 0;
@@ -142,8 +157,9 @@ input::placeholder{
 
 
 #searchBar {
+  margin:30px;
   border-color:black;
-  width: 30%;
+  width: 17%;
   -webkit-transition: width 0.4s ease-in-out;
   transition: width 0.4s ease-in-out;
   color: #fff;
