@@ -49,6 +49,7 @@
 
 ------------------------------------------------ */
 
+
 #feedbackNavBtn{
   margin:30px;
 }
@@ -156,7 +157,7 @@ input::placeholder{
    }
 
 
-#searchBar {
+#autocomplete {
   margin:30px;
   border-color:black;
   width: 17%;
@@ -177,7 +178,7 @@ input::placeholder{
   display: inline-block;
 }
 
-#searchBar:focus {
+#autocomplete:focus {
   width: 40%;
 }
 

@@ -10,7 +10,6 @@ router.get('/', function(req, res, next) {
 
 router.get('/fuzzySearch', function(req, res, next) {
     Report.getFuzzySearch(req.query.searchTerm, function (err, reports){
-        //TODO: get the real rating
         return res.json(reports);
     });
 

@@ -34,7 +34,8 @@ const ReportSchema = mongoose.Schema({
 const Report = module.exports = mongoose.model('Report', ReportSchema);
 
 module.exports.getFuzzySearch = function(searchTerm, callback){
-    Report.find({$or:[{"mls":{$regex:searchTerm}}, {"address":{$regex:searchTerm}}]}, callback);
+    const regex = new RegExp(searchTerm, 'gi');
+    Report.find({$or:[{"mls":regex}, {"address":regex}]}, callback);
 }
 
 module.exports.getReportById = function(id, callback){
