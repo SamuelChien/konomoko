@@ -11,6 +11,10 @@ $( document ).ready(function() {
         window.location.href = "/feedback";
     });
 
+    $("#scheduleButton").click(function(){
+        window.location.href = "/";
+    });
+    
     $("#paymentForm").hide();
 
     $("#searchResult").hide();

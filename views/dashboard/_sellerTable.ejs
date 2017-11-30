@@ -1,74 +1,94 @@
-<!-- begin::Widget 11-->
-<div class="m-widget11">
-  <div class="table-responsive">
-    <!--begin::Table-->
-    <table class="table">
-      <!--begin::Thead-->
-      <thead>
-        <tr>
-          <td class="m-widget11__app">
-            MLS Number
-          </td>
+<!--begin:: Widgets/Application Sales-->
+<div class="m-portlet m-portlet--full-height ">
+  <div class="m-portlet__head">
+      <div class="m-portlet__head-caption">
+        <div class="m-portlet__head-title">
+          <h3 class="m-portlet__head-text">
+            Upload
+          </h3>
+        </div>
+      </div>
+    </div>
+  <div class="m-portlet__body">
+    <div class="tab-content">
+      <div class="tab-pane active" id="m_widget11_tab2_content">
+        <!-- begin::Widget 11-->
+        <div class="m-widget11">
+          <div class="table-responsive">
+            <!--begin::Table-->
+            <table class="table">
+              <!--begin::Thead-->
+              <thead>
+                <tr>
+                  <td class="m-widget11__app">
+                    MLS Number
+                  </td>
 
-          <td class="m-widget11__app">
-            Address
-          </td>
+                  <td class="m-widget11__app">
+                    Address
+                  </td>
 
-          <td class="m-widget11__app">
-            Sales
-          </td>
-          <td class="m-widget11__app">
-            Total
-          </td>
-<!--           <td class="m-widget11__total m--align-right">
-            Actions
-          </td> -->
-        </tr>
-      </thead>
-      <!--end::Thead-->
-      <!--begin::Tbody-->
-      <tbody>
-        <!--begin::Loop-->
-        <% reports.forEach(function(report){ %>
-            <tr>
-            <!-- MLS Number -->
-            <td class="m-widget11__app">
-              <%=report.mls%>
-            </td>
+                  <td class="m-widget11__app">
+                    Sales
+                  </td>
+                  <td class="m-widget11__app">
+                    Total
+                  </td>
+        <!--           <td class="m-widget11__total m--align-right">
+                    Actions
+                  </td> -->
+                </tr>
+              </thead>
+              <!--end::Thead-->
+              <!--begin::Tbody-->
+              <tbody>
+                <!--begin::Loop-->
+                <% reports.forEach(function(report){ %>
+                    <tr>
+                    <!-- MLS Number -->
+                    <td class="m-widget11__app">
+                      <%=report.mls%>
+                    </td>
 
-            <!-- Address -->
-            <td class="m-widget11__app">
-              <%=report.address%>
-            </td>
+                    <!-- Address -->
+                    <td class="m-widget11__app">
+                      <%=report.address%>
+                    </td>
 
-            <!-- Number of Sales -->
-            <td class="m-widget11__app">
-              <%=report.number_of_sales%>
-            </td>
+                    <!-- Number of Sales -->
+                    <td class="m-widget11__app">
+                      <%=report.number_of_sales%>
+                    </td>
 
-            <!-- Total Earning -->
-            <td class="m-widget11__app">
-              $<%= (report.revenue/100).toFixed(2) %>
-            </td>
-<!--             <td data-field="Actions" class="m-widget11__total m--align-right">
-              <span style="overflow: visible; width: 110px;">
-                <a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" title="Edit details">
-                  <i class="la la-edit"></i>
-                </a>
-              </span>
-            </td> -->
-          </tr>
-        <% }) %>
-        <!--end::Loop-->
-      </tbody>
-      <!--end::Tbody-->
-    </table>
-    <!--end::Table-->
-  </div>
-  <div class="m-widget11__action m--align-right">
-    <button type="button" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--hover-brand" data-toggle="modal" data-target="#uploadReportModal">
-      Upload Report
-    </button>
+                    <!-- Total Earning -->
+                    <td class="m-widget11__app">
+                      $<%= (report.revenue/100).toFixed(2) %>
+                    </td>
+        <!--             <td data-field="Actions" class="m-widget11__total m--align-right">
+                      <span style="overflow: visible; width: 110px;">
+                        <a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" title="Edit details">
+                          <i class="la la-edit"></i>
+                        </a>
+                      </span>
+                    </td> -->
+                  </tr>
+                <% }) %>
+                <!--end::Loop-->
+              </tbody>
+              <!--end::Tbody-->
+            </table>
+            <!--end::Table-->
+          </div>
+          <div class="m-widget11__action m--align-right">
+            <button id="uploadReportBtn" type="button" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--hover-brand" data-toggle="modal" data-target="#uploadReportModal">
+              Upload Report
+            </button>
+          </div>
+        </div>
+        <!--end::Widget 11 -->
+      </div>
+    </div>
+    <% include _uploadReportModal %>
   </div>
 </div>
-<!--end::Widget 11 -->
+<!--end:: Widgets/Application Sales-->

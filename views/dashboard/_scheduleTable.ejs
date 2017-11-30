@@ -1,37 +1,58 @@
-<!--begin::Widget 11-->
-<div class="m-widget11">
-  <div class="table-responsive">
-    <!--begin::Table-->
-    <table class="table">
-      <!--begin::Thead-->
-      <thead>
-        <tr>
-          <td class="m-widget11__app">
-            MLS Number
-          </td>
-        </tr>
-      </thead>
-      <!--end::Thead-->
-      <!--begin::Tbody-->
-      <tbody>
-      <% scheduleEntries.forEach(function(scheduleEntry){ %>
-      <tr>
-        <!-- MLS Number -->
-        <td class="m-widget11__app">
-            <%=scheduleEntry.schedule_searchTerm%>
-        </td>
+<!--begin:: Widgets/Application Sales-->
+<div class="m-portlet m-portlet--full-height ">
+  <div class="m-portlet__head">
+      <div class="m-portlet__head-caption">
+        <div class="m-portlet__head-title">
+          <h3 class="m-portlet__head-text">
+            Schedule
+          </h3>
+        </div>
+      </div>
+    </div>
+  <div class="m-portlet__body">
+    <div class="tab-content">
+      <div class="tab-pane active" id="m_widget11_tab3_content">
+        <!--begin::Widget 11-->
+        <div class="m-widget11">
+          <div class="table-responsive">
+            <!--begin::Table-->
+            <table class="table">
+              <!--begin::Thead-->
+              <thead>
+                <tr>
+                  <td class="m-widget11__app">
+                    MLS Number
+                  </td>
+                </tr>
+              </thead>
+              <!--end::Thead-->
+              <!--begin::Tbody-->
+              <tbody>
+              <% scheduleEntries.forEach(function(scheduleEntry){ %>
+              <tr>
+                <!-- MLS Number -->
+                <td class="m-widget11__app">
+                    <%=scheduleEntry.schedule_searchTerm%>
+                </td>
 
-      </tr>
-      <% }) %>
-      </tbody>
-      <!--end::Tbody-->
-    </table>
-    <!--end::Table-->
-  </div>
-  <div class="m-widget11__action m--align-right">
-    <button id="scheduleButton" type="button" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--hover-brand">
-      Schedule Inspection
-    </button>
+              </tr>
+              <% }) %>
+              </tbody>
+              <!--end::Tbody-->
+            </table>
+            <!--end::Table-->
+          </div>
+          <div class="m-widget11__action m--align-right">
+            <button id="scheduleButton" type="button" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--hover-brand">
+              Schedule Inspection
+            </button>
+          </div>
+        </div>
+        <!--end::Widget 11-->
+      </div>
+    </div>
   </div>
 </div>
-<!--end::Widget 11-->
+<!--end:: Widgets/Application Sales-->
+
+

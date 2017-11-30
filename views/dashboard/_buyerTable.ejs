@@ -1,75 +1,94 @@
-<!--begin::Widget 11-->
-<div class="m-widget11">
-  <div class="table-responsive">
-    <!--begin::Table-->
-    <table class="table">
-      <!--begin::Thead-->
-      <thead>
-        <tr>
-          <td class="m-widget11__app">
-            MLS
-          </td>
-
-          <td class="m-widget11__app">
-            Address
-          </td>
-
-          <td class="m-widget11__app">
-            Seller
-          </td>
-
-          <td class="m-widget11__total m--align-left">
-            Actions
-          </td>
-        </tr>
-      </thead>
-      <!--end::Thead-->
-      <!--begin::Tbody-->
-      <tbody>
-      <% boughtReports.forEach(function(report){ %>
-      <tr>
-        <!-- MLS Number -->
-        <td class="m-widget11__app">
-            <%=report.mls%>
-        </td>
-
-        <!-- Address -->
-        <td class="m-widget11__app">
-            <%=report.address%>
-        </td>
-
-        <!-- Seller -->
-        <td class="m-widget11__app">
-            <%=report.uploader_id%>
-        </td>
-
-        <td data-field="Actions" class="m-datatable__cell"><span style="overflow: visible; width: 110px;">
-            <div class="dropdown ">
-              <a href="#" class="btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" data-toggle="dropdown">
-                <i class="la la-ellipsis-h"></i>
-              </a>
-              <div class="dropdown-menu dropdown-menu-right">
-                <a class="dropdown-item" href="<%=report.storage_location%>">
-                  <i class="la la-print"></i>Download Report</a>
-              </div>
-            </div>
-          </span>
-        </td>
-
-
-      </tr>
-      <% }) %>
-
-
-      </tbody>
-      <!--end::Tbody-->
-    </table>
-    <!--end::Table-->
+<!--begin:: Widgets/Application Sales-->
+<div class="m-portlet m-portlet--full-height ">
+  <div class="m-portlet__head">
+      <div class="m-portlet__head-caption">
+        <div class="m-portlet__head-title">
+          <h3 class="m-portlet__head-text">
+            Buy
+          </h3>
+        </div>
+      </div>
   </div>
-  <div class="m-widget11__action m--align-right">
-    <button id="reportSearch" type="button" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--hover-brand">
-      Buy Another
-    </button>
+  <div class="m-portlet__body">
+    <div class="tab-content">
+      <div class="tab-pane active" id="m_widget11_tab1_content">
+        <!--begin::Widget 11-->
+        <div class="m-widget11">
+          <div class="table-responsive">
+            <!--begin::Table-->
+            <table class="table">
+              <!--begin::Thead-->
+              <thead>
+                <tr>
+                  <td class="m-widget11__app">
+                    MLS
+                  </td>
+
+                  <td class="m-widget11__app">
+                    Address
+                  </td>
+
+                  <td class="m-widget11__app">
+                    Seller
+                  </td>
+
+                  <td class="m-widget11__total m--align-left">
+                    Actions
+                  </td>
+                </tr>
+              </thead>
+              <!--end::Thead-->
+              <!--begin::Tbody-->
+              <tbody>
+              <% boughtReports.forEach(function(report){ %>
+              <tr>
+                <!-- MLS Number -->
+                <td class="m-widget11__app">
+                    <%=report.mls%>
+                </td>
+
+                <!-- Address -->
+                <td class="m-widget11__app">
+                    <%=report.address%>
+                </td>
+
+                <!-- Seller -->
+                <td class="m-widget11__app">
+                    <%=report.uploader_id%>
+                </td>
+
+                <td data-field="Actions" class="m-datatable__cell"><span style="overflow: visible; width: 110px;">
+                    <div class="dropdown ">
+                      <a href="#" class="btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill actionBtn" data-toggle="dropdown">
+                        <i class="la la-ellipsis-h"></i>
+                      </a>
+                      <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="<%=report.storage_location%>">
+                          <i class="la la-print"></i>Download Report</a>
+                      </div>
+                    </div>
+                  </span>
+                </td>
+
+
+              </tr>
+              <% }) %>
+
+
+              </tbody>
+              <!--end::Tbody-->
+            </table>
+            <!--end::Table-->
+          </div>
+          <div class="m-widget11__action m--align-right">
+            <button id="reportSearch" type="button" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--hover-brand">
+              Buy Another
+            </button>
+          </div>
+        </div>
+        <!--end::Widget 11-->
+      </div>
+    </div>
   </div>
 </div>
-<!--end::Widget 11-->
+<!--end:: Widgets/Application Sales-->

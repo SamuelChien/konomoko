@@ -1,0 +1,22 @@
+#scheduleButton {
+    background: #716aca;
+    border-color:#716aca;
+    color:#fff;
+}
+
+#reportSearch {
+    background: #716aca;
+    border-color:#716aca;
+    color:#fff;
+}
+
+#uploadReportBtn {
+    background: #716aca;
+    border-color:#716aca;
+    color:#fff;
+}
+
+.btn.m-btn.m-btn--hover-accent.m-btn--icon.m-btn--icon-only.m-btn--pill.actionBtn{
+	background: #716aca;
+    border-color:#716aca;
+}
