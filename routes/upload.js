@@ -40,11 +40,21 @@ router.post('/', LoginHelper.isAuthenticated, upload, function(req, res) {
       mls: req.body.mls,
       address: req.body.address,
       uploader_id: req.user.username,
-      storage_location: req.file.url
+      storage_location: req.file.url,
+      status: "Pending"
     });
     report.save();
 
-    emailHelper.emailForUpload(req.user.username, req.body.mls, req.file.url);
+    const emailOptions = {
+      mls: req.body.mls,
+      reportUrl: req.file.url,
+      email: req.user.username,
+      address: req.body.address,
+      reportId: req.file.blob,
+      fullSiteUrl: req.protocol + '://' + req.get('host')
+    }
+
+    emailHelper.emailForUpload(emailOptions);
     pdfHelper.getPreviewUrl(req.file.url);
 
     res.redirect('dashboard');
