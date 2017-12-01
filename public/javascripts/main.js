@@ -1,19 +1,11 @@
 $( document ).ready(function() {
 
-    $("#reportSearch").click(function(){
-        window.location.href = "/";
-    });
-
     $("#sellMyReportBtn").click(function(){
         window.location.href = "/dashboard";
     });
 
     $("#feedbackBtn").click(function(){
         window.location.href = "/feedback";
-    });
-
-    $("#scheduleButton").click(function(){
-        window.location.href = "/";
     });
     
     $("#paymentForm").hide();
