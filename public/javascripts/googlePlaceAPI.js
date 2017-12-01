@@ -21,17 +21,13 @@
       autocomplete.addListener('place_changed', alertChange);
     }
 
-    function escapeRegex(text) {
-        return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
-    };
-
     function alertChange() {
       // Get the place details from the autocomplete object.
       var place = autocomplete.getPlace();
 
       $("#paymentForm").hide();
       $("#searchResult").show();
-      $.get( "/reports/fuzzySearch", { searchTerm: escapeRegex($("#autocomplete").val())}).done(function( data ) {
+      $.get( "/reports/fuzzySearch", { searchTerm: $("#autocomplete").val()}).done(function( data ) {
           $("#reportDisplayDiv").html("<div id=\"reportDisplayDiv\" class=\"row\"></div>");
           if(data.length != 0)
           {

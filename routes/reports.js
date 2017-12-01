@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/fuzzySearch', function(req, res, next) {
-    Report.getFuzzySearch(req.query.searchTerm, function (err, reports){
+    Report.getFuzzySearch(req.query.searchTerm.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&"), function (err, reports){
         return res.json(reports);
     });
 
