@@ -1,4 +1,12 @@
 $( document ).ready(function() {
+    
+    $(window).keydown(function(event){
+      if(event.keyCode == 13) {
+        event.preventDefault();
+        return false;
+      }
+    });
+
     $("#reportSearch").click(function(){
       window.location.href = "/";
     });
@@ -10,6 +18,8 @@ $( document ).ready(function() {
     $(window).on('shown.bs.modal', function(){
       initAutocomplete(); 
     });
+
+    //$('#uploadReportModal').modal('show'); 
 });
 
     var placeSearch, autocomplete;

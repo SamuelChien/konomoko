@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const pdfHelper = require('../lib/pdf')
+const pdfHelper = require('../lib/pdf');
 var ObjectId = require('mongodb').ObjectID;
 
 /* GET home page. */

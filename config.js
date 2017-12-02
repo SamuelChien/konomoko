@@ -7,7 +7,9 @@ module.exports = function(){
               azureStorageAccessKey: 'n6wvfVWuNUubC94RAh+Vp9bpAP4XesX66lhhwARwhI7XXs9dLRQrqAH9qutZdcRRpuN/8xb4KpsQA+dNhmy9nA==',
               azureStorageAccount: 'mangoinspectdevo',
               stripeServerKey: 'sk_test_rGmApxU2IwX1QI1KkkRZBtV5',
-              stripeClientKey: 'pk_test_Qy30tfLZhKSn4pEFoIo3zeIj'
+              stripeClientKey: 'pk_test_Qy30tfLZhKSn4pEFoIo3zeIj',
+              nexmoAPIKey:'417dacb1',
+              nexmoAPISecret:'d41e76e4ddf9d7f1'
             };
 
         case 'production':
@@ -17,7 +19,9 @@ module.exports = function(){
               azureStorageAccessKey: 'F0ovfgq+ivWzO4cAqCXmB7wRZiJAA8BCIx8Chq4T/VEvPrLentx1dosr9KDmQWMUuUhodDw98EM3xpmZRZVE3g==',
               azureStorageAccount: 'mangoinspectprod',
               stripeServerKey: 'sk_live_cAEIaEXB48tk5Hz7DpAQus11',
-              stripeClientKey: 'pk_live_lpH0j5q53cvx2A2xTIyEfQIO'
+              stripeClientKey: 'pk_live_lpH0j5q53cvx2A2xTIyEfQIO',
+              nexmoAPIKey:'417dacb1',
+              nexmoAPISecret:'d41e76e4ddf9d7f1'
             };
 
         default:

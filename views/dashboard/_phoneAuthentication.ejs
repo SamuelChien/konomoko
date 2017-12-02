@@ -1,0 +1,38 @@
+<div class="modal fade" id="uploadReportModal" tabindex="-1" role="dialog" aria-labelledby="uploadReportModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="uploadReportModal">New Report</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="report-upload-form"
+              action='/upload'
+              method='post'
+              encType="multipart/form-data">
+          <div class="form-group">
+            <label for="report-mls" class="form-control-label">MLS#:</label>
+            <input type="text" name="mls" class="form-control" id="report-mls">
+          </div>
+          <div class="form-group">
+            <label for="report-addr" class="form-control-label">Address:</label>
+            <input id="autocomplete" type="text" name="search" placeholder="Enter a location" class="form-control" onFocus="geolocate()">
+          </div>
+          <div class="form-group">
+            <label for="report">Report</label>
+            <input type="file" name="report" class="form-control-file" id="report-upload" aria-describedby="fileHelp">
+            <small id="fileHelp" class="form-text text-muted">
+              Report must be in .pdf format and file size must be under 5MB.
+            </small>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" form="report-upload-form" class="btn btn-primary" value="Submit">Upload</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -18,6 +18,7 @@ const stripe = require('./routes/stripe');
 const upload = require('./routes/upload');
 const profile = require('./routes/profile');
 const feedback = require('./routes/feedback');
+const nexmo = require('./routes/nexmo');
 const pdf = require('./routes/pdf');
 const winston = require('winston');
 const expressWinston = require('express-winston');
@@ -101,6 +102,7 @@ app.use('/upload', upload);
 app.use('/profile', profile);
 app.use('/feedback', feedback);
 app.use('/pdf', pdf);
+app.use('/nexmo', nexmo);
 
 // express-winston errorLogger makes sense AFTER the router.
 app.use(expressWinston.errorLogger({

@@ -34,3 +34,7 @@
 .modal-backdrop{
     z-index: 10;        
 }
+
+.m-grid__item.m-header {
+    z-index: 5; 
+}

@@ -38,13 +38,22 @@ router.post('/', LoginHelper.isAuthenticated, upload, function(req, res) {
     const report = new Report({
       report_id: req.file.blob,
       mls: req.body.mls,
-      address: req.body.address,
+      address: req.body.search,
       uploader_id: req.user.username,
       storage_location: req.file.url
     });
     report.save();
 
-    emailHelper.emailForUpload(req.user.username, req.body.mls, req.file.url);
+    const emailOptions = {
+      mls: req.body.mls,
+      reportUrl: req.file.url,
+      email: req.user.username,
+      address: req.body.search,
+      reportId: req.file.blob,
+      fullSiteUrl: req.protocol + '://' + req.get('host')
+    }
+
+    emailHelper.emailForUpload(emailOptions);
     pdfHelper.getPreviewUrl(req.file.url);
 
     res.redirect('dashboard');
