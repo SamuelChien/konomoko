@@ -18,8 +18,6 @@ $( document ).ready(function() {
     $(window).on('shown.bs.modal', function(){
       initAutocomplete(); 
     });
-
-    //$('#uploadReportModal').modal('show'); 
 });
 
     var placeSearch, autocomplete;

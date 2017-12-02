@@ -105,4 +105,12 @@ var SnippetLogin = function() {
         };
     return { init: function() { clickHandler(), loginSubmit(), signUpSubmit(), forgetPasswordSubmit() } }
 }();
-jQuery(document).ready(function() { SnippetLogin.init() });
+jQuery(document).ready(function() { 
+  SnippetLogin.init();
+  //$('#phoneAuthenticationModal').modal('show'); 
+});
+
+
+
+
+
