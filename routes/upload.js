@@ -38,7 +38,7 @@ router.post('/', LoginHelper.isAuthenticated, upload, function(req, res) {
     const report = new Report({
       report_id: req.file.blob,
       mls: req.body.mls,
-      address: req.body.address,
+      address: req.body.search,
       uploader_id: req.user.username,
       storage_location: req.file.url,
       status: "Pending"
@@ -49,7 +49,7 @@ router.post('/', LoginHelper.isAuthenticated, upload, function(req, res) {
       mls: req.body.mls,
       reportUrl: req.file.url,
       email: req.user.username,
-      address: req.body.address,
+      address: req.body.search,
       reportId: req.file.blob,
       fullSiteUrl: req.protocol + '://' + req.get('host')
     }
