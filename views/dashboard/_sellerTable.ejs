@@ -4,7 +4,7 @@
       <div class="m-portlet__head-caption">
         <div class="m-portlet__head-title">
           <h3 class="m-portlet__head-text">
-            Uploaded Reports
+            Upload
           </h3>
         </div>
       </div>
@@ -33,9 +33,6 @@
                   </td>
                   <td class="m-widget11__app">
                     Total
-                  </td>
-                  <td class="m-widget11__app">
-                    Status
                   </td>
         <!--           <td class="m-widget11__total m--align-right">
                     Actions
@@ -67,11 +64,6 @@
                     <td class="m-widget11__app">
                       $<%= (report.revenue/100).toFixed(2) %>
                     </td>
-
-                    <!-- Report Status -->
-                    <td class="m-widget11__app">
-                      <%= report.status %>
-                    </td>
         <!--             <td data-field="Actions" class="m-widget11__total m--align-right">
                       <span style="overflow: visible; width: 110px;">
                         <a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" title="Edit details">
@@ -89,7 +81,7 @@
           </div>
           <div class="m-widget11__action m--align-right">
             <button id="uploadReportBtn" type="button" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--hover-brand" data-toggle="modal" data-target="#uploadReportModal">
-              Upload to Sell
+              Upload Report
             </button>
           </div>
         </div>

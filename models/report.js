@@ -25,10 +25,6 @@ const ReportSchema = mongoose.Schema({
         type: Number,
         default: 0
     },
-    status: {
-        type: String,
-        default: "Pending"
-    },
     revenue: {
         type: Number, // Money is stored in integer. Eg. $10.99 is stored as 1099
         default: 0
@@ -39,7 +35,7 @@ const Report = module.exports = mongoose.model('Report', ReportSchema);
 
 module.exports.getFuzzySearch = function(searchTerm, callback){
     const regex = new RegExp(searchTerm, 'gi');
-    Report.find({$and: [{$or:[{"mls":regex}, {"address":regex}]}, {"status":"Active"}]}, callback);
+    Report.find({$or:[{"mls":regex}, {"address":regex}]}, callback);
 }
 
 module.exports.getReportById = function(id, callback){
