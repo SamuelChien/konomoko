@@ -32,12 +32,12 @@
           if(data.length != 0)
           {
               data.forEach(function(report) {
-                  $("#reportDisplayDiv").append("<div class=\"col-md-4\"><div class=\"products_box\"><h4>Report</h4><p class=\"products_price\">99</p><ul class=\"products_list\"><li>Address: "  + report.address + "</li><li>MLS: " + report.mls + "</li><li><a href=\"" + report.preview_location + "\">Preview</li></ul><div><a href=\"" + report.report_id + "\" class=\"btn_type1 buyReport\"><span>Order Now</span></a></div></div></div>");
+                  $("#reportDisplayDiv").append("<div class=\"col-md-4\"><div class=\"products_box\"><h4>Report</h4><p class=\"products_price\">150</p><ul class=\"products_list\"><li>Address: "  + report.address + "</li><li>MLS: " + report.mls + "</li><li><a target=\"_blank\" href=\"" + report.preview_location + "\">Preview</li></ul><div><a href=\"" + report.report_id + "\" class=\"btn_type1 buyReport\"><span>Order Now</span></a></div></div></div>");
               });
           }
           else
           {
-              $("#reportDisplayDiv").append("<div class=\"col-md-4\"><div class=\"products_box\"><h4>Schedule Inspection</h4><p class=\"products_price\">250</p><ul class=\"products_list\"><li>Schedule within 48 Hours</li><li>Licensed Professional</li><li>Refund $50 for Every Additional Buyer</li></ul><div><a href=\"" + $("#searchBar").val() + "\" class=\"btn_type1 scheduleReport\"><span>Schedule Now</span></a></div></div></div>");
+              $("#reportDisplayDiv").append("<div class=\"col-md-4\"><div class=\"products_box\"><h4>Schedule Inspection</h4><p class=\"products_price\">400</p><ul class=\"products_list\"><li>Schedule within 48 Hours</li><li>Licensed Professional</li><li>Refund $100 for Every Additional Buyer</li></ul><div><a href=\"" + $("#searchBar").val() + "\" class=\"btn_type1 scheduleReport\"><span>Schedule Now</span></a></div></div></div>");
           }
           $('html,body').animate({ scrollTop: $("#reportDisplayDiv").offset().top - 100}, 'slow');
       });
